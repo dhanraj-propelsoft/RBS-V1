@@ -61,7 +61,7 @@
 
                     <div class="card-footer d-inline-block">
                         <button type="submit" class="btn btn-success"> Register </button>
-                    <p class="float-right mt-2"> Already have an account?  <a href="{{ url('user-login')}}" class="text-success"> Login </a> </p>
+                    <p class="float-right mt-2"> Already have an account?  <a href="{{ url('login')}}" class="text-success"> Login </a> </p>
                     </div>
                     @csrf
                 </div>

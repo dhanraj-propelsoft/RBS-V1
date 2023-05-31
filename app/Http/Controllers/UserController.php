@@ -104,10 +104,10 @@ class UserController extends Controller
 
         // check if user logged in
         if (Auth::check()) {
-            return view('dashboard');
+            return view('admin.dashboard');
         }
 
-        return redirect::to("user-login")->withSuccess('Oopps! You do not have access');
+        return redirect::to("login")->withSuccess('Oopps! You do not have access');
     }
 
 
@@ -116,6 +116,6 @@ class UserController extends Controller
     {
         $request->session()->flush();
         Auth::logout();
-        return Redirect('user-login');
+        return Redirect('login');
     }
 }

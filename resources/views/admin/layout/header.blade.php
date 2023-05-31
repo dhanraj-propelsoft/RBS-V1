@@ -47,7 +47,33 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
         </button>
       </div>
     
-      
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+        <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style="width:35px;height:35px;" >
+        @if(Auth()->user()->first_name)
+          {{ ucfirst(substr(Auth()->user()->first_name, 0, 1)) }}
+          @endif
+        </div>
+    
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuAvatar"
+        >
+          <li>
+            <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
+          </li>
+       
+          </li>
+        </ul>
+      </div>
     </div>
     
   </nav>

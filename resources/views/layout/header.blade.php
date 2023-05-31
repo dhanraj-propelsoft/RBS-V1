@@ -51,9 +51,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
           aria-expanded="false"
         >
         <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style="width:35px;height:35px;" >
-          @if(Auth()->user()->first_name)
-          {{ ucfirst(substr(Auth()->user()->first_name, 0, 1)) }}
-          @endif
+          
         </div>
     
         </a>
@@ -61,14 +59,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
           class="dropdown-menu dropdown-menu-end"
           aria-labelledby="navbarDropdownMenuAvatar"
         >
+        
           <li>
-            <a class="dropdown-item" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="{{ url('login') }}">Admin Login</a>
           </li>
         </ul>
       </div>

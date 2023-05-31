@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashbordController;
+use App\Http\Controllers\User\PersonController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('user/home');
 });
 Route::get('/excel', function () {
     return view('excel');
@@ -40,9 +40,21 @@ Route::get('/order', function () {
     return view('orderDetails');
 });
 Route::get('user-registration', [UserController::class, 'index'])->name('user-registration');
-Route::get('user-login', [UserController::class, 'userLoginIndex'])->name('user-login');
+
 Route::post('user-store', [UserController::class, 'userPostRegistration'])->name('user-store');
 Route::post('login', [UserController::class, 'userPostLogin'])->name('login');
 
-Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-Route::get('logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/login', [UserController::class, 'userLoginIndex'])->name('loginuser');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('dashboard', [DashbordController::class, 'index'])->name('dashboard');
+
+    Route::get('logout', [UserController::class, 'logout'])->name('logout');
+});
+
+
+Route::post('findByMobileNumber', [PersonController::class, 'findByMobileNumber']);
+Route::post('setUserType', [PersonController::class, 'setUserType']);
+Route::post('storeUserCredential', [PersonController::class, 'storeUserCredential']);
+Route::post('storeOrder', [PersonController::class, 'storeOrder']);
