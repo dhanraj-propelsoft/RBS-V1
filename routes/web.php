@@ -14,8 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/', function () {
+    return view('dashboard');
+});
+Route::get('/excel', function () {
+    return view('excel');
+});
+Route::get('/pagea', function () {
+    return view('admin/pageA');
+});
+Route::get('/pageb', function () {
+    return view('admin/pageB');
+});
+Route::get('/userConfirm', function () {
+    return view('userConfirm');
+});
+Route::get('/profile', function () {
+    return view('myProfile');
+});
+Route::get('/order', function () {
+    return view('orderDetails');
 });
 Route::get('user-registration', [UserController::class, 'index'])->name('user-registration');
 Route::get('user-login', [UserController::class, 'userLoginIndex'])->name('user-login');

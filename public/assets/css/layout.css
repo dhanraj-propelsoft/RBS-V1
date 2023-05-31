@@ -1,0 +1,6 @@
+.main-container{
+    max-height: calc(100vh - 63px);
+    min-height: calc(100vh - 63px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
