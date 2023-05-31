@@ -24,13 +24,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="siteName" class="form-control" name="siteName" />
+										<input type="text" id="siteName" class="form-control" name="siteName" siteAddress/>
 										<label class="form-label" for="siteName">Site Name</label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="siteNumber" class="form-control" name="siteNumber" required />
+										<input type="text" id="siteNumber" class="form-control" name="siteNumber" required  siteAddress/>
 										<label class="form-label" for="siteNumber">Site / Plot Number<sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -39,13 +39,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="streetCityState" class="form-control" name="streetCityState" required />
+										<input type="text" id="streetCityState" class="form-control" name="streetCityState" required siteAddress/>
 										<label class="form-label" for="streetCityState">Street, City, State<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="city" class="form-control" name="city" required />
+										<input type="text" id="city" class="form-control" name="city" required siteAddress/>
 										<label class="form-label" for="city">City <sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -54,7 +54,7 @@
 							<div class="row">
 								<div class="col-md-12 mb-4">
 									<div class="form-outline">
-										<input type="text" id="landmark" class="form-control" name="landmark" required />
+										<input type="text" id="landmark" class="form-control" name="landmark" required siteAddress/>
 										<label class="form-label" for="landmark">Landmark <sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -133,9 +133,9 @@
 								</div>
 								
 								<div class="col-md-6 mb-4">
-									<select class="form-select" id="exampleSelect" required  aria-label="Select option">
-										<option selected disabled>Select an option</option>
-										<option value="">Option 1</option>
+									<select class="form-select" id="conGrade" name="conGrade" required  aria-label="Select option">
+										<option selected disabled>Congrate Grade</option>
+										<option value="opt">Option 1</option>
 										<option value="option2">Option 2</option>
 										<option value="option3">Option 3</option>
 									  </select>
@@ -145,7 +145,7 @@
 							  <div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-									  <input type="text" id="ratePerCube" class="form-control" readonly value="30"  />
+									  <input type="text" id="ratePerCube" name="ratePerCupe" class="form-control" readonly value="30"  />
 									  <label class="form-label" for="ratePerCube">Rate per m<sup>3</sup></label>
 									</div>
 								  </div>
@@ -162,23 +162,23 @@
 										<label for="services">Service</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+										<input class="form-check-input service" type="checkbox" name="service[]" id="inlineCheckbox1"  value="option1" />
 										<label class="form-check-label" for="inlineCheckbox1">Pumb</label>
 									  </div>
 									  
 									  <div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+										<input class="form-check-input service" type="checkbox" name="service[]" id="inlineCheckbox2" value="option2" />
 										<label class="form-check-label" for="inlineCheckbox2">Boom</label>
 									  </div>
-									  <div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2" />
+									  <div class="form-check form-check-inline service">
+										<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="service[]" value="option2" />
 										<label class="form-check-label" for="inlineCheckbox3">Manual</label>
 									  </div>
 								  </div>
 							  </div>
 							 <div class="row mb-4">
 								<div class="form-outline">
-									<textarea class="form-control" id="Remarks" rows="4"></textarea>
+									<textarea class="form-control" name="remarks" id="Remarks" rows="4"></textarea>
 									<label class="form-label" for="Remarks">Remarks</label>
 								  </div>
 							 </div>
@@ -193,13 +193,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 								  <div class="form-outline">
-									<input type="text" id="personName" name="personName" class="form-control" required />
+									<input type="text" id="personName" name="personName" class="form-control" required billAddress/>
 									<label class="form-label" for="personName">Person Name / Organization Name <sup class="text-red">*</sup></label>
 								  </div>
 								</div>
 								<div class="col-md-6 mb-4">
 								  <div class="form-outline">
-									<input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control" required />
+									<input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control" required billAddress/>
 									<label class="form-label" for="blockPlotNumber">Block / Plot Number <sup class="text-red">*</sup></label>
 								  </div>
 								</div>
@@ -208,13 +208,13 @@
 							  <div class="row">
 								<div class="col-md-6 mb-4">
 								  <div class="form-outline">
-									<input type="text" id="streetCityState" name="streetCityState" class="form-control" required />
+									<input type="text" id="streetCityState" name="streetCityState" class="form-control" required billAddress/>
 									<label class="form-label" for="streetCityState">Street, City, State <sup class="text-red">*</sup></label>
 								  </div>
 								</div>
 								<div class="col-md-6 mb-4">
 								  <div class="form-outline">
-									<input type="text" id="city" name="city" class="form-control" required />
+									<input type="text" id="city" name="city" class="form-control" required billAddress/>
 									<label class="form-label" for="city">City <sup class="text-red">*</sup></label>
 								  </div>
 								</div>
@@ -267,39 +267,39 @@
 	
 		<div class="row">
 		  <h5 class="col-md-6">Date & Time of Supply:</h5>
-		  <p class="col-md-6">12/08/2023, 12:00 pm</p>
+		  <p class="col-md-6" data-from="datetime">12/08/2023, 12:00 pm</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Site Address:</h5>
-		  <p class="col-md-6">westcross street, Trichy</p>
+		  <h5 class="col-md-6" >Site Address:</h5>
+		  <p class="col-md-6" data-from="siteAddresses">westcross street, Trichy</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Billing Address:</h5>
-		  <p class="col-md-6">propelsoft, BDU Campus</p>
+		  <h5 class="col-md-6" >Billing Address:</h5>
+		  <p class="col-md-6" data-from="billAddress">propelsoft, BDU Campus</p>
 		</div>
 		<div class="row">
 		  <h5 class="col-md-6">Concrete Grade:</h5>
-		  <p class="col-md-6">Grade: B</p>
+		  <p class="col-md-6"  data-from="conGrade">Grade: B</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Quantity in cubic meter:</h5>
-		  <p class="col-md-6">32</p>
+		  <h5 class="col-md-6 " >Quantity in cubic meter:</h5>
+		  <p class="col-md-6" data-from="quantity">32</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Service:</h5>
-		  <p class="col-md-6">32</p>
+		  <h5 class="col-md-6" >Service:</h5>
+		  <p class="col-md-6" data-from="service">32</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Net Amount:</h5>
-		  <p class="col-md-6">13:00</p>
+		  <h5 class="col-md-6" >Net Amount:</h5>
+		  <p class="col-md-6" data-from="netAmount">13:00</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Advance:</h5>
-		  <p class="col-md-6">13:00</p>
+		  <h5 class="col-md-6" >Advance:</h5>
+		  <p class="col-md-6" data-from="advance">13:00</p>
 		</div>
 		<div class="row">
-		  <h5 class="col-md-6">Remark:</h5>
-		  <p class="col-md-6">this is remark</p>
+		  <h5 class="col-md-6" >Remark:</h5>
+		  <p class="col-md-6" data-from="remarks">this is remark</p>
 		</div>
 		  <a href="#" class="btn btn-primary col-12 col-md-6 col-lg-6 m-auto order_confirm" >Confirm</a>
 		</div>
@@ -310,6 +310,36 @@
 <script>
     jQuery(document).ready(function() {
 		$(".order_confirm").click(function(){
+			function getFormData() {
+      var data = {};
+
+      $("#form :input").each(function() {
+        var name = $(this).attr("name");
+        var value = $(this).val();
+
+        // Skip elements without a name
+        if (!name) {
+          return;
+        }
+
+        // If the element is a checkbox and has the same name as a previous checkbox,
+        // add its value to the existing array in the data object.
+        if ($(this).is(":checkbox") && $(this).is(":checked") && data[name] && Array.isArray(data[name])) {
+          data[name].push(value);
+        } else {
+          // Otherwise, set the value directly in the data object.
+          data[name] = value;
+        }
+      });
+
+      console.log(data);
+    }
+
+
+	//ajax here
+
+
+
 			let timerInterval
 			const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -467,6 +497,55 @@ parentFieldset.find('input').each(function() {
  });
  console.log(nextWizardStep);
 		if (nextWizardStep) {
+			var siteAddresses = $("input[siteAddress]").map(function() {
+				return $(this).val();
+    }).get().filter(function(value) {
+      return value !== "";
+    }).join(",");
+    var billAddresses = $("input[billAddress]").map(function() {
+				return $(this).val();
+    }).get().filter(function(value) {
+      return value !== "";
+    }).join(",");
+	var datetime=$("#datetime").val();
+    var conGrade=$("#conGrade option:selected").html();
+	console.log(conGrade);
+	var quantity=$("quantity").val();	
+	var service=$(".service").map(function() {
+      return $(this).next().html();
+    }).get().join(",");
+	var netAmount=$("#netAmount").val();
+	var advance=$("#advance").val();
+	var remarks=$("#Remarks").val();
+	$('[data-from]').each(function() {
+		var dataFrom=$(this).attr('data-from');
+		switch (dataFrom) {
+    case 'datetime':
+      $(this).html(datetime);
+      break;
+    case 'conGrade':
+      $(this).html(conGrade);
+      break;
+    case 'quantity':
+      $(this).html(quantity);
+      break;
+    case 'service':
+      $(this).html(service);
+      break;
+    case 'netAmount':
+      $(this).html(netAmount);
+      break;
+    case 'advance':
+      $(this).html(advance);
+      break;
+    case 'remarks':
+      $(this).html(remarks);
+      break;
+    default:
+      // Handle other cases if needed
+      break;
+  }
+  });
 			$(".wizard-section , .order-confirm").toggleClass("d-none");
 		}
 	});

@@ -39,6 +39,9 @@ Route::get('/profile', function () {
 Route::get('/order', function () {
     return view('orderDetails');
 });
+Route::get('/exist', function () {
+    return view('existingUser');
+});
 Route::get('user-registration', [UserController::class, 'index'])->name('user-registration');
 
 Route::post('user-store', [UserController::class, 'userPostRegistration'])->name('user-store');

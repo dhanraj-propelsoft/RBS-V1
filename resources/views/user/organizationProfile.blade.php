@@ -3,7 +3,7 @@
 
 <div class="d-flex justify-content-center align-items-sm-start align-items-md-center  main-container">
 
-  <div class="card col-11 col-sm-11 mt-2 col-md-8 col-lg-6" style="height:100%;">
+  <div class="card col-6 col-sm-11 mt-2 col-md-6 col-lg-6" style="height:100%;">
     <div class="card-header border-0">
       <h5 class="card-title float-start">Profile</h5>
       <div class="float-end">

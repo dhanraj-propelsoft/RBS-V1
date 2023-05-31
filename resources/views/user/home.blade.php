@@ -21,7 +21,7 @@
           @csrf
             <div class="col">
               <div class="form-outline">
-                <input type="number" id="phoneNumber" name="phoneNumber" class="form-control form-control-lg"  pattern="[0-9]{10,10}" required maxlength="10" oninput="this.value=this.value.replace(/[^\d]/,'')" placeholder="Enter Your Mobile Number" />
+                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control form-control-lg"  pattern="[0-9]{10,10}" required maxlength="10" oninput="this.value=this.value.replace(/[^\d]/,'')" placeholder="Enter Your Mobile Number" />
                 <label class="form-label" for="phoneNumber">Mobile Number</label>
               </div>
             </div>
