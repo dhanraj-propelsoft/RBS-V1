@@ -17,6 +17,6 @@
             </div>
         </div>
       </div>
-    <a href="#" type="button" class="btn btn-primary m-4">Add New Order</a>
+    <a href="{{url('orderPage/'.$type)}}" type="button" class="btn btn-primary m-4">Add New Order</a>
   </div>
 @endsection 

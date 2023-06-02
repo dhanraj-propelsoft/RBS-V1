@@ -13,6 +13,7 @@ use App\Models\PersonMobile;
 use App\Models\PersonType;
 use App\Models\Product;
 use App\Models\ServiceType;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -24,11 +25,11 @@ class PersonController extends Controller
         $orgmodel = OrganizationMobile::where('mobile_no', $mobileNo)->first();
         if ($model) {
             $personType = PersonType::where('person_id', $model->id)->first();
-            if ($personType->type_id) {
-                dd("agent");
-            }
+            $type = "agent";
+            return view('existingUser', compact('mobileNo', 'type'));
         } elseif ($orgmodel) {
-            dd("Party");
+            $type = "party";
+            return view('existingUser', compact('mobileNo', 'type'));
         } else {
             return view('user.userType', compact('mobileNo'));
         }
@@ -52,33 +53,61 @@ class PersonController extends Controller
 
         $userType = $request->userType;
         if ($userType == 1) {
-            $OrgModels = $this->convertToOrganizationModel($request->all());
+
+            $personModels = $this->convertToPersonModel($request->all());
+            $personId = (isset($personModels['id'])) ? $personModels['id'] : "";
+
+            $OrgModels = $this->convertToOrganizationModel($request->all(), $personId);
+            $type = "agent";
         } else {
             $PersonModels = $this->convertToPersonModel($request->all());
+            $type = "party";
         }
-        $ServiceTypes = ServiceType::where('status', 1)->get();
-        $productModels = Product::where('status', 1)->get();
-        return view('user.orderDetails', compact('ServiceTypes', 'productModels'));
+        $ServiceTypes = $this->getServiceType();
+        $productModels = $this->getProduct();
+
+        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+    }
+    public function getServiceType()
+    {
+        return ServiceType::where('status', 1)->get();
     }
 
-    public function convertToOrganizationModel($datas)
+    public function getProduct()
+    {
+        return Product::where('status', 1)->get();
+    }
+    public function orderpage($type)
+    {
+
+        $ServiceTypes = $this->getServiceType();
+        $productModels = $this->getProduct();
+
+        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+    }
+    public function convertToOrganizationModel($datas, $personId = null)
     {
         $datas = (object)$datas;
+        if ($datas->organizationName) {
+            $orgModel = new Organization();
+            $orgModel->organization_name = $datas->organizationName;
+            $orgModel->gst = $datas->gst;
+            if ($personId) {
+                $orgModel->person_id = $personId;
+            }
+            $orgModel->save();
 
-        $orgModel = new Organization();
-        $orgModel->organization_name = $datas->organizationName;
-        $orgModel->gst = $datas->gst;
-        $orgModel->save();
-
-        $orgMobileModel = new OrganizationMobile();
-        $orgMobileModel->organization_id = $orgModel->id;
-        $orgMobileModel->mobile_no = $datas->mobileNumber;
-        $orgMobileModel->save();
-
-        $orgEmailModel = new OrganizationEmail();
-        $orgEmailModel->organization_id = $orgModel->id;
-        $orgEmailModel->email = $datas->personEmail;
-        $orgEmailModel->save();
+            // $orgMobileModel = new OrganizationMobile();
+            // $orgMobileModel->organization_id = $orgModel->id;
+            // $orgMobileModel->mobile_no = $datas->mobileNumber;
+            // $orgMobileModel->save();
+            if (isset($datas->organizationEmail)) {
+                $orgEmailModel = new OrganizationEmail();
+                $orgEmailModel->organization_id = $orgModel->id;
+                $orgEmailModel->email = $datas->organizationEmail;
+                $orgEmailModel->save();
+            }
+        }
         return true;
     }
 
@@ -86,26 +115,39 @@ class PersonController extends Controller
     {
         $datas = (object)$datas;
 
-        $personModel = new Person();
-        $personModel->name = $datas->name;
-        $personModel->save();
+        if (isset($datas->personName)) {
 
-        $personMobile = new PersonMobile();
-        $personMobile->person_id = $personModel->id;
-        $personMobile->mobile_no = $datas->mobileNumber;
-        $personMobile->save();
+            $personModel = new Person();
+            $personModel->name = $datas->personName;
+            $personModel->save();
 
-        $personEmail = new PersonEmail();
-        $personEmail->person_id = $personModel->id;
-        $personEmail->email = $datas->email;
-        $personEmail->save();
+            $personType = new PersonType();
+            $personType->person_id = $personModel->id;
+            $personType->type_id = 2;
+            $personType->save();
+        }
+        if ($personModel->id && $datas->mobileNumber) {
 
-        $personEmail = new PersonType();
-        $personEmail->person_id = $personModel->id;
-        $personEmail->type_id = 2;
-        $personEmail->save();
+            $personMobile = new PersonMobile();
+            $personMobile->person_id = $personModel->id;
+            $personMobile->mobile_no = $datas->mobileNumber;
+            $personMobile->save();
+        }
+        if ($personModel->id && $datas->personEmail) {
 
-        return true;
+            $personEmail = new PersonEmail();
+            $personEmail->person_id = $personModel->id;
+            $personEmail->email = $datas->personEmail;
+            $personEmail->save();
+        }
+        if ($personModel) {
+            $res = ['response' => "Success", 'id' => $personModel->id];
+            return $res;
+        } else {
+
+            $res = ['response' => "Failed"];
+            return $res;
+        }
     }
     public function storeOrder(Request $request)
     {

@@ -61,3 +61,5 @@ Route::post('findByMobileNumber', [PersonController::class, 'findByMobileNumber'
 Route::post('setUserType', [PersonController::class, 'setUserType']);
 Route::post('storeUserCredential', [PersonController::class, 'storeUserCredential']);
 Route::post('storeOrder', [PersonController::class, 'storeOrder']);
+
+Route::get('orderPage/{type}', [PersonController::class, 'orderPage']);

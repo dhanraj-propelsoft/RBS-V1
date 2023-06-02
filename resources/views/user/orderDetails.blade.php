@@ -63,26 +63,26 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<!-- Default checkbox -->
-									<div class="form-check">
+									<div class="form-check" <?php if ($type != "agent") { ?>style="display: none;" <?php } ?>>
 										<input class="form-check-input" type="checkbox" value="" id="partyDetails" name="partyDetails" />
 										<label class="form-check-label" for="partyDetails">Party Details</label>
 									</div>
-									<div class="form-check">
+									<div class="form-check" <?php if ($type != "party") { ?>style="display: none;" <?php } ?>>
 										<input class="form-check-input" type="checkbox" value="" id="engineerDetails" name="engineerDetails" />
 										<label class="form-check-label" for="engineerDetails">Engineer Details</label>
 									</div>
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" <?php if ($type != "agent") { ?>style="display: none;" <?php } ?>>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="customerName" class="form-control" name="customerName" />
+										<input type="text" id="customerName" class="form-control customerFields" disabled name="customerName" />
 										<label class="form-label" for="customerName">Customer Name</label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="customerMobile" class="form-control" name="customerMobile" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" />
+										<input type="text" id="customerMobile" class="form-control customerFields" disabled name="customerMobile" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" />
 										<label class="form-label" for="customerMobile">Customer Mobile Number</label>
 									</div>
 								</div>
@@ -91,16 +91,16 @@
 
 
 
-							<div class="row">
+							<div class="row" <?php if ($type != "party") { ?>style="display: none;" <?php } ?>>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="engineerName" name="engineerName" class="form-control" />
+										<input type="text" id="engineerName" name="engineerName" class="form-control engineerFields" disabled />
 										<label class="form-label" for="engineerName">Engineer Name</label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="engineerMobile" name="engineerMobile" class="form-control" oninput="this.value=this.value.replace(/[^\d]/,'')" pattern="[0-9]{10,10}" maxlength="10" />
+										<input type="text" id="engineerMobile" name="engineerMobile" class="form-control engineerFields" oninput="this.value=this.value.replace(/[^\d]/,'')" pattern="[0-9]{10,10}" maxlength="10" disabled />
 										<label class="form-label" for="engineerMobile">Engineer Mobile Number</label>
 									</div>
 								</div>
@@ -488,6 +488,21 @@
 		$(".show").removeClass("show");
 		$("fieldset[wizardFirst]").addClass("show");
 		$(".wizard_name").html($(".wizard-fieldset.show").attr('wizard-title'));
+	});
+	$('#partyDetails').on('click', function() {
+		if ($(this).is(':checked')) {		
+			$('.customerFields').prop('disabled', false);
+		} else {
+			$('.customerFields').prop('disabled', true);
+		}
+	});
+
+	$('#engineerDetails').on('click', function() {
+		if ($(this).is(':checked')) {		
+			$('.engineerFields').prop('disabled', false);
+		} else {
+			$('.engineerFields').prop('disabled', true);
+		}
 	});
 </script>
 <style>

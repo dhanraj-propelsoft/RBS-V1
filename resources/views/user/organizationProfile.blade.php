@@ -14,12 +14,12 @@
     <div class="card-body">
       <form name="form" method="post" action="{{url('storeUserCredential')}}">
         @csrf
-        <input type="hidden" name="userType" id="userType" required value="{{$userType}}" />
+        <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="organizationName" name="organizationName" class="form-control" required />
+              <input type="text" id="organizationName" name="organizationName" class="form-control" />
               <label class="form-label" for="organizationName">Organization/Builder/Agent Name<sup class="text-red">*</sup> </label>
             </div>
           </div>
@@ -40,7 +40,7 @@
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control" required />
+              <input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control"  />
               <label class="form-label" for="blockPlotNumber">Block/Plot Number<sup class="text-red">*</sup></label>
             </div>
           </div>
@@ -49,13 +49,13 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="streetCityState" name="streetCityState" class="form-control" required />
+              <input type="text" id="streetCityState" name="streetCityState" class="form-control" />
               <label class="form-label" for="streetCityState">Street, City, State<sup class="text-red">*</sup> </label>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="contactPerson" name="contactPerson" class="form-control" required />
+              <input type="text" id="contactPerson" name="personName" class="form-control" required/>
               <label class="form-label" for="contactPerson">Contact Person<sup class="text-red">*</sup> </label>
             </div>
           </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="mobileNumber" name="mobileNumber" value="{{$mobileNo}}" class="form-control" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" required maxlength="10"  />
+              <input type="text" id="mobileNumber" name="mobileNumber" value="{{$mobileNo}}" class="form-control" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" readonly/>
               <label class="form-label" for="mobileNumber">Mobile Number</label>
             </div>
           </div>
