@@ -12,7 +12,7 @@
 
     </div>
     <div class="card-body">
-      <form name="form" method="post" action="{{url('storeUserCredential')}}">
+      <form name="form" method="post" action="{{url('agentStore')}}">
         @csrf
         <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
         <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -49,8 +49,8 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="streetCityState" name="streetCityState" class="form-control" />
-              <label class="form-label" for="streetCityState">Street, City, State<sup class="text-red">*</sup> </label>
+              <input type="text" id="street" name="street" class="form-control" />
+              <label class="form-label" for="street">Street<sup class="text-red">*</sup> </label>
             </div>
           </div>
           <div class="col-md-6 mb-4">

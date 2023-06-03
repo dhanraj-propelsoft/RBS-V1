@@ -63,3 +63,6 @@ Route::post('storeUserCredential', [PersonController::class, 'storeUserCredentia
 Route::post('storeOrder', [PersonController::class, 'storeOrder']);
 
 Route::get('orderPage/{type}', [PersonController::class, 'orderPage']);
+
+Route::post('personStore', [PersonController::class, 'personStore']);
+Route::post('agentStore', [PersonController::class, 'agentStore']);

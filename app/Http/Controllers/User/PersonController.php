@@ -47,7 +47,30 @@ class PersonController extends Controller
             return view('user.personProfile', compact('mobileNo', 'userType'));
         }
     }
+    public function personStore(Request $request)
+    {
 
+        $personModels = $this->convertToPersonModel($request->all(), 2);
+        $type = "party";
+
+        $ServiceTypes = $this->getServiceType();
+        $productModels = $this->getProduct();
+
+        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+    }
+    public function agentStore(Request $request)
+    {
+
+        $personModels = $this->convertToPersonModel($request->all());
+        $personId = (isset($personModels['id'])) ? $personModels['id'] : "";
+
+        $OrgModels = $this->convertToOrganizationModel($request->all(), $personId);
+        $type = "agent";
+        $ServiceTypes = $this->getServiceType();
+        $productModels = $this->getProduct();
+
+        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+    }
     public function storeUserCredential(Request $request)
     {
 
@@ -111,10 +134,10 @@ class PersonController extends Controller
         return true;
     }
 
-    public function convertToPersonModel($datas)
+    public function convertToPersonModel($datas, $userType = null)
     {
         $datas = (object)$datas;
-
+        $personModel = [];
         if (isset($datas->personName)) {
 
             $personModel = new Person();
@@ -123,22 +146,23 @@ class PersonController extends Controller
 
             $personType = new PersonType();
             $personType->person_id = $personModel->id;
-            $personType->type_id = 2;
+            $personType->type_id = $userType;
             $personType->save();
-        }
-        if ($personModel->id && $datas->mobileNumber) {
 
-            $personMobile = new PersonMobile();
-            $personMobile->person_id = $personModel->id;
-            $personMobile->mobile_no = $datas->mobileNumber;
-            $personMobile->save();
-        }
-        if ($personModel->id && $datas->personEmail) {
+            if (isset($datas->mobileNumber)) {
 
-            $personEmail = new PersonEmail();
-            $personEmail->person_id = $personModel->id;
-            $personEmail->email = $datas->personEmail;
-            $personEmail->save();
+                $personMobile = new PersonMobile();
+                $personMobile->person_id = $personModel->id;
+                $personMobile->mobile_no = $datas->mobileNumber;
+                $personMobile->save();
+            }
+            if (isset($datas->personEmail)) {
+
+                $personEmail = new PersonEmail();
+                $personEmail->person_id = $personModel->id;
+                $personEmail->email = $datas->personEmail;
+                $personEmail->save();
+            }
         }
         if ($personModel) {
             $res = ['response' => "Success", 'id' => $personModel->id];

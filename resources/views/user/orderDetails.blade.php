@@ -40,8 +40,8 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="streetCityState" class="form-control" name="streetCityState" required siteAddress/>
-										<label class="form-label" for="streetCityState">Street, City, State<sup class="text-red">*</sup></label>
+										<input type="text" id="street" class="form-control" name="street" required siteAddress/>
+										<label class="form-label" for="street">Street<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
