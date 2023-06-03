@@ -25,13 +25,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="siteName" class="form-control" name="siteName" />
+										<input type="text" id="siteName" class="form-control" name="siteName" siteAddress/>
 										<label class="form-label" for="siteName">Site Name</label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="siteNumber" class="form-control" name="siteNumber" required />
+										<input type="text" id="siteNumber" class="form-control" name="siteNumber" required siteAddress/>
 										<label class="form-label" for="siteNumber">Site / Plot Number<sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -40,13 +40,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="streetCityState" class="form-control" name="streetCityState" required />
+										<input type="text" id="streetCityState" class="form-control" name="streetCityState" required siteAddress/>
 										<label class="form-label" for="streetCityState">Street, City, State<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="city" class="form-control" name="city" required />
+										<input type="text" id="city" class="form-control" name="city" required siteAddress/>
 										<label class="form-label" for="city">City <sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -55,7 +55,7 @@
 							<div class="row">
 								<div class="col-md-12 mb-4">
 									<div class="form-outline">
-										<input type="text" id="landmark" class="form-control" name="landmark" required />
+										<input type="text" id="landmark" class="form-control" name="landmark" required siteAddress/>
 										<label class="form-label" for="landmark">Landmark <sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -119,7 +119,7 @@
 									<div class="form-group  col-md-12 align-items-center justify-content-between m-0">
 
 										<div class="input-group date form_datetime col-md-12 p-0" data-date="" data-date-format="dd-mm-yyyy - HH:ii p" data-link-field="dtp_input2">
-											<input class="form-control" size="16" type="text" value="" placeholder="Date & Time Supply" id="datetime" pattern="\d{2}-\d{2}-\d{4} - \d{2}:\d{2} (am|pm)" required autocomplete="off" />
+											<input class="form-control" size="18" name="view_date_time" type="text" value="" placeholder="Date & Time Supply" id="datetime" pattern="\d{2}-\d{2}-\d{4} - \d{2}:\d{2} (am|pm)" required autocomplete="off" />
 
 											<button class="input-group-addon rounded" style="background: transparent;border: 1px solid #bdbdbd;"><span class="fas fa-calendar"></span></button>
 										</div>
@@ -130,8 +130,9 @@
 								</div>
 
 								<div class="col-md-6 mb-4">
-									<select class="form-select" id="datetime" name="product" required aria-label="Select option">
+									<select class="form-select" id="conGrade" name="conGrade" required aria-label="Select option">
 										<option selected disabled>Select an Product</option>
+									
 										@foreach($productModels as $productModel)
 										<option value="{{$productModel->id}}">{{$productModel->product_name}}</option>
 										@endforeach
@@ -160,8 +161,8 @@
 									</div>
 									@foreach($ServiceTypes as $ServiceType)
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="ServiceType" value="{{$ServiceType->id}}" />
-										<label class="form-check-label" for="inlineCheckbox1">{{$ServiceType->service_name}}</label>
+										<input class="form-check-input service" type="checkbox" id="inlineCheckbox{{$loop->iteration}}" name="ServiceType[]" value="{{$ServiceType->id}}" />
+										<label class="form-check-label" for="inlineCheckbox{{$loop->iteration}}">{{$ServiceType->service_name}}</label>
 									</div>
 									@endforeach
 								</div>
@@ -183,13 +184,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="personName" name="personName" class="form-control" required />
+										<input type="text" id="personName" name="personName" class="form-control" required  billAddress/>
 										<label class="form-label" for="personName">Person Name / Organization Name <sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control" required />
+										<input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control" required billAddress/>
 										<label class="form-label" for="blockPlotNumber">Block / Plot Number <sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -198,13 +199,13 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="streetCityState" name="streetCityState" class="form-control" required />
+										<input type="text" id="streetCityState" name="streetCityState" class="form-control" required billAddress/>
 										<label class="form-label" for="streetCityState">Street, City, State <sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="city" name="city" class="form-control" required />
+										<input type="text" id="city" name="city" class="form-control" required billAddress/>
 										<label class="form-label" for="city">City <sup class="text-red">*</sup></label>
 									</div>
 								</div>
@@ -241,65 +242,91 @@
 		{{-- --}}
 
 
-		<div class="card-header d-flex align-items-center">
+		<div class="card-header d-flex align-items-center">		
 			<h5 class="text-center w-100">Order Details</h5>
 			<div style="width:80px;">
-				<button type="button" class="border-0 bg-white revert-order-details">
-					<i class="fas fa-edit ml-2"></i>
-				</button>
-				<button type="button" class="btn-close" aria-label="Close"></button>
-			</div>
-
-
-		</div>
-		<div class="card-body">
-		</div>
-
-		<div class="row">
+			  <button type="button" class="border-0 bg-white revert-order-details">
+				  <i class="fas fa-edit ml-2" ></i>
+				  </button>			
+			  <button type="button" class="btn-close"  aria-label="Close"></button>
+		  </div>  
+			
+			  
+		  </div>
+		  <div class="card-body">
+		  </div>
+	  
+		  <div class="row">
 			<h5 class="col-md-6">Date & Time of Supply:</h5>
-			<p class="col-md-6">12/08/2023, 12:00 pm</p>
-		</div>
-		<div class="row">
-			<h5 class="col-md-6">Site Address:</h5>
-			<p class="col-md-6">westcross street, Trichy</p>
-		</div>
-		<div class="row">
-			<h5 class="col-md-6">Billing Address:</h5>
-			<p class="col-md-6">propelsoft, BDU Campus</p>
-		</div>
-		<div class="row">
+			<p class="col-md-6" data-from="datetime">12/08/2023, 12:00 pm</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6" >Site Address:</h5>
+			<p class="col-md-6" data-from="siteAddresses">westcross street, Trichy</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6" >Billing Address:</h5>
+			<p class="col-md-6" data-from="billAddresses">propelsoft, BDU Campus</p>
+		  </div>
+		  <div class="row">
 			<h5 class="col-md-6">Concrete Grade:</h5>
-			<p class="col-md-6">Grade: B</p>
+			<p class="col-md-6"  data-from="conGrade">Grade: B</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6 " >Quantity in cubic meter:</h5>
+			<p class="col-md-6" data-from="quantity">32</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6" >Service:</h5>
+			<p class="col-md-6" data-from="service">32</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6" >Net Amount:</h5>
+			<p class="col-md-6" data-from="netAmount">13:00</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6" >Advance:</h5>
+			<p class="col-md-6" data-from="advance">13:00</p>
+		  </div>
+		  <div class="row">
+			<h5 class="col-md-6" >Remark:</h5>
+			<p class="col-md-6" data-from="remarks">this is remark</p>
+		  </div>
+			<a href="#" class="btn btn-primary col-12 col-md-6 col-lg-6 m-auto order_confirm" >Order Confirm</a>
+		  </div>
 		</div>
-		<div class="row">
-			<h5 class="col-md-6">Quantity in cubic meter:</h5>
-			<p class="col-md-6">32</p>
-		</div>
-		<div class="row">
-			<h5 class="col-md-6">Service:</h5>
-			<p class="col-md-6">32</p>
-		</div>
-		<div class="row">
-			<h5 class="col-md-6">Net Amount:</h5>
-			<p class="col-md-6">13:00</p>
-		</div>
-		<div class="row">
-			<h5 class="col-md-6">Advance:</h5>
-			<p class="col-md-6">13:00</p>
-		</div>
-		<div class="row">
-			<h5 class="col-md-6">Remark:</h5>
-			<p class="col-md-6">this is remark</p>
-		</div>
-		<a href="#" class="btn btn-primary col-12 col-md-6 col-lg-6 m-auto order_confirm">Confirm</a>
 	</div>
-</div>
-</div>
+  
 
 
 <script>
 	jQuery(document).ready(function() {
 		$(".order_confirm").click(function() {
+			var data = {};
+
+$("input ,select , textarea").each(function() {
+  var name = $(this).attr("name");
+  console.log(name);
+  var value = $(this).val();
+  if (!name) {
+	return;
+  }
+  if ($(this).is(":checkbox") ) {
+	if ( $(this).is(":checked")) {
+		if (data[name] && Array.isArray(data[name])) {
+      data[name].push(value);
+    } else {
+      data[name] = [value]; // Create a new array with the checkbox value
+    }
+	}
+   
+  } else {
+	data[name] = value;
+  }
+});
+
+console.log(data); 
+
 			let timerInterval
 			const swalWithBootstrapButtons = Swal.mixin({
 				customClass: {
@@ -319,7 +346,7 @@
 					// const b = Swal.getHtmlContainer().querySelector('b')
 					timerInterval = setInterval(() => {
 						b.textContent = Swal.getTimerLeft()
-					}, 100)
+					}, 100)	
 				},
 				willClose: () => {
 					clearInterval(timerInterval)
@@ -343,17 +370,17 @@
 			var nextWizardStep = true;
 			$('.error-input').remove();
 			$('.trailing').remove();
-			// console.log(parentFieldset.find("input[required]"));
+			
 			parentFieldset.find("input , select , textarea").each(function() {
-				// console.log(this);
+		
 				var input = $(this);
 				var value = input.val();
 				var pattern = input.attr("pattern");
 
-				console.log(value);
+			
 				if (input.prop("required") && (value === null || value.trim() === "")) {
 					// Handle required validation error
-					console.log("Field is required: " + input.attr("name"));
+				
 					if (value === null) {
 
 						input.parent().append("<span class='text-danger error-input'> This is Required</span>");
@@ -444,7 +471,8 @@
 				var pattern = input.attr("pattern");
 				if (input.prop("required") && (value === null || value.trim() === "")) {
 					// Handle required validation error
-					console.log("Field is required: " + input.attr("name"));
+				
+					
 					// input.siblings('.trailing').remove();
 					input.parent().prepend(' <i class="fas fa-exclamation-circle trailing text-danger"></i>')
 					input.parent().parent().append("<span class='text-danger error-input'> This is Required</span>");
@@ -452,15 +480,72 @@
 				} else if (pattern && value.trim() !== "") {
 					var regex = new RegExp(pattern);
 					if (!regex.test(value)) {
-						// Handle pattern validation error
-						console.log("Pattern is incorrect: " + input.attr("name"));
+				
 						input.parent().parent().append("<span class='text-danger error-input'> Value is Invalid</span>");
 						nextWizardStep = false;
 					}
 				}
 			});
-			console.log(nextWizardStep);
 			if (nextWizardStep) {
+				
+			var siteAddresses = $("input[siteAddress]").map(function() {
+				return $(this).val();
+    }).get().filter(function(value) {
+      return value !== "";
+    }).join(",");
+
+    var billAddresses = $("input[billAddress]").map(function() {
+				return $(this).val();
+    }).get().filter(function(value) {
+      return value !== "";
+    }).join(",");
+	var datetime=$("#datetime").val();
+    var conGrade=$("#conGrade option:selected").html();
+
+	var quantity=$("#quantity").val();	
+
+	var service=$(".service:checked").map(function() {
+      return $(this).next().html();
+    }).get().join(",");
+
+	var netAmount=$("#netAmount").val();
+	var advance=$("#advance").val();
+	var remarks=$("#Remarks").val();
+	$('[data-from]').each(function() {
+		var dataFrom=$(this).attr('data-from');
+		switch (dataFrom) {
+			case 'siteAddresses':
+      $(this).html(siteAddresses);
+      break;
+	  case 'billAddresses':
+      $(this).html(billAddresses);
+      break;
+    case 'datetime':
+      $(this).html(datetime);
+      break;
+    case 'conGrade':
+      $(this).html(conGrade);
+      break;
+    case 'quantity':
+      $(this).html(quantity);
+      break;
+    case 'service':
+      $(this).html(service);
+      break;
+    case 'netAmount':
+      $(this).html(netAmount);
+      break;
+    case 'advance':
+      $(this).html(advance);
+      break;
+    case 'remarks':
+      $(this).html(remarks);
+      break;
+    default:
+      // Handle other cases if needed
+      break;
+  }
+  });
 				$(".wizard-section , .order-confirm").toggleClass("d-none");
 			}
 		});

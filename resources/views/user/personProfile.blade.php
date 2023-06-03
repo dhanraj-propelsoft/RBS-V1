@@ -20,85 +20,66 @@
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="text" id="organizationName" name="organizationName" class="form-control " required />
-              <label class="form-label" for="organizationName">Organization/Builder/Agent Name<sup class="text-red">*</sup> </label>
+              <label class="form-label" for="organizationName"> Name<sup class="text-red">*</sup> </label>
             </div>
           </div>
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="email" id="organizationEmail" name="organizationEmail" class="form-control" />
-              <label class="form-label" for="organizationEmail">Organization Email</label>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="text" id="gst" name="gst" class="form-control" />
               <label class="form-label" for="gst">GST</label>
             </div>
           </div>
+        </div>
+        
+        <div class="row">
+          
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="mobileNumber" name="mobileNumber" value="{{$mobileNo}}" class="form-control" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" required maxlength="10" />
-              <label class="form-label" for="mobileNumber">Mobile Number</label>
+              <input type="text" id="mobileNumber" name="mobileNumber" value="{{$mobileNo}}" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" required maxlength="10" />
+              <label class="form-label" for="mobileNumber">Mobile Number<sup class="text-red">*</sup></label>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="form-outline">
+              <input type="email" id="email" name="email" class="form-control"  />
+              <label class="form-label" for="email">Email</label>
             </div>
           </div>
         </div>
         
         <div class="row">
+         
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="email" id="email" name="email" class="form-control" required />
-              <label class="form-label" for="email">Email<sup class="text-red">*</sup></label>
+              <input type="text" id="plotNUmber" name="plotNUmber" class="form-control"  />
+              <label class="form-label" for="plotNUmber">Block/Plot Number </label>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="plotNUmber" name="plotNUmber" class="form-control" required />
-              <label class="form-label" for="plotNUmber">Block/Plot Number<sup class="text-red">*</sup> </label>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="text" id="streetCityState" name="streetCityState" class="form-control" required />
-              <label class="form-label" for="streetCityState">Street, City, State<sup class="text-red">*</sup> </label>
-            </div>
-          </div>
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="text" id="city" name="city" class="form-control" required />
-              <label class="form-label" for="city">City<sup class="text-red">*</sup> </label>
+              <input type="text" id="streetCityState" name="streetCityState" class="form-control"  />
+              <label class="form-label" for="streetCityState">Street, City, State </label>
             </div>
           </div>
         </div>
         
         <div class="row">
+         
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="personDesignation" name="personDesignation" class="form-control" />
-              <label class="form-label" for="personDesignation">Person Designation</label>
+              <input type="text" id="city" name="city" class="form-control"  />
+              <label class="form-label" for="city">City </label>
             </div>
           </div>
           <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="email" id="personEmail" name="personEmail" class="form-control" />
-              <label class="form-label" for="personEmail">Person Email</label>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-12 mb-4">
             <div class="d-grid gap-2">
               <button class="btn btn-primary">Continue</button>
             </div>
           </div>
         </div>
         
+       
+    
 
 
 
