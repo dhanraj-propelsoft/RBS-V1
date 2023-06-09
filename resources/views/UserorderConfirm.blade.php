@@ -5,7 +5,7 @@
         <h5 class="text-center w-100">Order Details</h5>
         <div style="width:80px;">
           <button type="button" class="border-0 bg-white revert-order-details">
-              <i class="fas fa-edit ml-2" ></i>
+              <i class="fa fa-edit ml-2" ></i>
               </button>			
           <button type="button" class="btn-close"  aria-label="Close"></button>
       </div>  

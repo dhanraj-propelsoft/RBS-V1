@@ -1,4 +1,9 @@
 $(function () {
+	 // jQuery Code to Hide Spinner on Complete Page Load
+	 $(window).on('load', function() {
+		$('.spinner').fadeOut();
+	  });
+
     $("[hover]").hover(
         function() {
           let Hover=$(this).attr("hover");
@@ -17,7 +22,7 @@ $(function () {
         e.preventDefault();
         $($(this).attr("styleModify")).toggleClass($(this).attr("styleModifyToggleClasses"));
       });
-      $(".sideabr-29-05-2023 .nav-link").hover(
+      $(".sidebar-29-05-2023 .nav-link").hover(
         function() {
           
           // On mousein, toggle the btn-outline-success and btn-success classes
@@ -30,27 +35,35 @@ $(function () {
         }
       );
 
-      $('.form_datetime').datetimepicker({
-		    weekStart: 1,
-		    todayBtn:  1,
+	
+      if ($('.form_datetime').length > 0) {
+		$('.form_datetime').datetimepicker({
+			weekStart: 1,
+			todayBtn: 1,
 			autoclose: 1,
 			todayHighlight: 1,
 			startView: 2,
 			forceParse: 0,
-		    showMeridian: 1
+			showMeridian: 1
 		});
+	}
+	
+	if ($('.form_date').length > 0) {
 		$('.form_date').datetimepicker({
-		    weekStart: 1,
-		    todayBtn:  1,
+			weekStart: 1,
+			todayBtn: 1,
 			autoclose: 1,
 			todayHighlight: 1,
 			startView: 2,
 			minView: 2,
 			forceParse: 0
 		});
+	}
+	
+	if ($('.form_time').length > 0) {
 		$('.form_time').datetimepicker({
-		    weekStart: 1,
-		    todayBtn:  1,
+			weekStart: 1,
+			todayBtn: 1,
 			autoclose: 1,
 			todayHighlight: 1,
 			startView: 1,
@@ -58,19 +71,30 @@ $(function () {
 			maxView: 1,
 			forceParse: 0
 		});
-		$(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-		 $(function() {
-			    // Bootstrap DateTimePicker v3
-			    $('#datetimepicker4').datetimepicker({
-			      pickTime: false
-			    });
-			    // Bootstrap DateTimePicker v4
-			    $('#datetimepicker3').datetimepicker({
-			      format: 'DD/MM/YYYY'
-			    });
-			  });
+	}
+	
+	$(function () {
+		if ($('#datetimepicker1').length > 0) {
+			$('#datetimepicker1').datetimepicker();
+		}
+	});
+	
+	$(function () {
+		if ($('#datetimepicker4').length > 0) {
+			$('#datetimepicker4').datetimepicker({
+				pickTime: false
+			});
+		}
+	
+		if ($('#datetimepicker3').length > 0) {
+			$('#datetimepicker3').datetimepicker({
+				format: 'DD/MM/YYYY'
+			});
+		}
+	});
+	
 		
       
 });
+
+

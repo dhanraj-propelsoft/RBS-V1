@@ -5764,7 +5764,8 @@ fieldset:disabled .btn {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  outline: 0
+  outline: 0;
+  backdrop-filter:blur(5px);
 }
 
 .modal-dialog {
@@ -5828,7 +5829,7 @@ fieldset:disabled .btn {
 
 .modal-backdrop {
   --mdb-backdrop-zindex: 1050;
-  --mdb-backdrop-bg: #000;
+  --mdb-backdrop-bg: #e5e5e5;
   --mdb-backdrop-opacity: 0.5;
   position: fixed;
   top: 0;
@@ -5836,7 +5837,8 @@ fieldset:disabled .btn {
   z-index: var(--mdb-backdrop-zindex);
   width: 100vw;
   height: 100vh;
-  background-color: var(--mdb-backdrop-bg)
+  background-color: var(--mdb-backdrop-bg);
+ 
 }
 
 .modal-backdrop.fade {
@@ -19157,6 +19159,94 @@ fieldset:disabled .btn-group>.btn {
 .carousel-control-next-icon:after {
   content: ""
 }
+
+
+/*Own Style or OverWriting*/
 .text-red{
   color: var(--mdb-code-color);
 }
+.input-group:has(input:focus) .input-group-addon{
+  border-color:var(--mdb-primary) !important;
+  border-width: 2px !important;
+  color: var(--mdb-primary) !important;
+}
+
+/*
+Loaders
+*/
+
+.loader-12 {
+  width: 48px;
+  height: 48px;
+  border: 3px dotted var(--mdb-primary);
+  border-style: solid solid dotted dotted;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  -webkit-animation: rotation 2s linear infinite;
+          animation: rotation 2s linear infinite;
+}
+.loader-12:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px dotted #FF3D00;
+  border-style: solid solid dotted;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  -webkit-animation: rotationBack 1s linear infinite;
+          animation: rotationBack 1s linear infinite;
+  transform-origin: center center;
+}
+
+  /* keyFrames */
+  @-webkit-keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  @keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  .spinner{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+ 
+  }

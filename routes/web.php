@@ -24,12 +24,8 @@ Route::get('/', function () {
 Route::get('/excel', function () {
     return view('excel');
 });
-Route::get('/pagea', function () {
-    return view('admin/pageA');
-});
-Route::get('/pageb', function () {
-    return view('admin/pageB');
-});
+
+
 Route::get('/userConfirm', function () {
     return view('userConfirm');
 });
@@ -54,6 +50,31 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashbordController::class, 'index'])->name('dashboard');
 
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+    Route::prefix('order')->group(function () {
+        Route::view('/orderRequest', 'admin/order/orderRequest');
+        Route::view('/addNewOrder', 'admin/order/addOrder');
+        Route::view('/checkPerson', 'admin/order/checkPerson');
+        Route::view('/orgProfile', 'admin/order/organizationProfile');
+        Route::view('/personProfile', 'admin/order/personProfile');
+        Route::view('/orderDetails', 'admin/order/orderDetails');
+        Route::view('/userOrderConfirm', 'admin/order/userOrderConfirm');
+    });
+    Route::prefix('product')->group(function () {
+        Route::view('/productList', 'admin/product/productList');
+     
+    });
+    Route::prefix('service')->group(function () {
+        Route::view('/serviceList', 'admin/service/serviceList');
+        Route::view('/add', 'admin/service/add');
+     
+    });
+    Route::prefix('overall')->group(function () {
+        Route::view('/overallList', 'admin/overall/overallList');
+       
+     
+    });
+
 });
 
 

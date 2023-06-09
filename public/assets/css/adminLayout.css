@@ -1,4 +1,8 @@
-
+body{
+  width: 100vw;
+  height: 100vh   ;
+  overflow: hidden;
+}
   .custom-container {
     height: calc(100vh - 60px);
     display: flex;
@@ -6,7 +10,7 @@
     
   }
   
-  .sideabr-29-05-2023 {
+  .sidebar-29-05-2023 {
     overflow-x: hidden;
     max-width: 250px;
     min-width: 250px;
@@ -20,4 +24,10 @@ overflow-y: auto  ;
   .workstation-29-05-2023 {
     flex: 1 1 auto;
     min-height: 0;
+    min-width:calc(100vw - 280px);
+    max-width:calc(100vw - 280px);
+  }
+  .sidebar-29-05-2023.d-none + .workstation-29-05-2023 {
+    min-width:calc(100vw - 30px);
+    max-width:calc(100vw - 30px);
   }

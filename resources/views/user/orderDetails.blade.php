@@ -121,7 +121,7 @@
 										<div class="input-group date form_datetime col-md-12 p-0" data-date="" data-date-format="dd-mm-yyyy - HH:ii p" data-link-field="dtp_input2">
 											<input class="form-control" size="18" name="view_date_time" type="text" value="" placeholder="Date & Time Supply" id="datetime" pattern="\d{2}-\d{2}-\d{4} - \d{2}:\d{2} (am|pm)" required autocomplete="off" />
 
-											<button class="input-group-addon rounded" style="background: transparent;border: 1px solid #bdbdbd;"><span class="fas fa-calendar"></span></button>
+											<button class="input-group-addon rounded" style="background: transparent;border: 1px solid #bdbdbd;"><span class="fa fa-calendar"></span></button>
 										</div>
 										<input type="hidden" id="dtp_input2" name="date_time" value="" />
 
@@ -268,7 +268,7 @@
 						if (input.attr('id') == "datetime") {
 							input.parent().parent().append("<span class='text-danger error-input'> This is Required</span>");
 						} else {
-							input.parent().prepend(' <i class="fas fa-exclamation-circle trailing text-danger"></i>')
+							input.parent().prepend(' <i class="fa fa-warning trailing text-danger"></i>')
 							input.parent().parent().append("<span class='text-danger error-input'> This is Required</span>");
 						}
 
@@ -354,7 +354,7 @@
 				
 					
 					// input.siblings('.trailing').remove();
-					input.parent().prepend(' <i class="fas fa-exclamation-circle trailing text-danger"></i>')
+					input.parent().prepend(' <i class="fa fa-warning trailing text-danger"></i>')
 					input.parent().parent().append("<span class='text-danger error-input'> This is Required</span>");
 					nextWizardStep = false;
 				} else if (pattern && value.trim() !== "") {

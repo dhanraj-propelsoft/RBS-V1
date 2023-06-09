@@ -1,9 +1,9 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 @section('content')
 
-<div class="d-flex justify-content-center align-items-sm-start align-items-md-center  main-container">
+<div class="d-flex justify-content-center align-items-start mt-5 shadow-1  main-container">
 
-  <div class="card col-6 col-sm-11 mt-2 col-md-6 col-lg-6" style="height:100%;">
+  <div class="card col-10" >
     <div class="card-header border-0">
       <h5 class="card-title float-start">Profile</h5>
       <div class="float-end">
@@ -12,9 +12,9 @@
 
     </div>
     <div class="card-body">
-      <form name="form" method="post" action="{{url('personStore')}}">
+      <form name="form" method="post" action="">
         @csrf
-        <input type="hidden" name="userType" id="userType" required value="{{$userType}}" />
+        <input type="hidden" name="userType" id="userType" required value="" />
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row">
           <div class="col-md-6 mb-4">
@@ -35,7 +35,7 @@
 
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="mobileNumber" name="mobileNumber" value="{{$mobileNo}}" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" disabled maxlength="10" />
+              <input type="text" id="mobileNumber" name="mobileNumber" value="" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" disabled maxlength="10" />
               <label class="form-label" for="mobileNumber">Mobile Number<sup class="text-red">*</sup></label>
             </div>
           </div>
