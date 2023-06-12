@@ -78,17 +78,37 @@
       </div>
       </div>
       </div>
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="orderConfirmModal" tabindex="-1" aria-labelledby="orderConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderConfirmModalLabel">Order Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <div class="border-bottom pb-2 d-flex justify-content-between">
+      <span class=" btn-link  text-primary">http://127.0.0.1:8000/order/userOrderConfirm</span>
+      <button type="button" class="btn mx-3 btn-primary btn-sm ">Copy Link</button>
+    </div>
+        
+    
+   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Confirm Order</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
   $(function () {
     $(".order_confirm").click(function(){
-
-			swal.fire({
-		    confirmButton:false,
-        html:""
-
-			})
+      $("#orderConfirmModal").modal("show");
+		console.log("worked");
 		});
   });
 </script>

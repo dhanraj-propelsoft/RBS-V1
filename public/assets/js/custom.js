@@ -97,4 +97,24 @@ $(function () {
       
 });
 
+$(window).on("load",function(){
+	$("[target_number]").each(function() {
+		var targetNumber = $(this).attr("target_number"); // The number you want to reach
+	  
+		var duration = 800; // The duration of the animation in milliseconds
+	  
+		$(this).animate({
+		  num: targetNumber
+		}, {
+		  duration: duration,
+		  step: function(now) {
+			$(this).text(Math.floor(now));
+		  }
+		});
+	  });
+});
+$('.select2').select2({
+    minimumResultsForSearch: Infinity
+  });
 
+  

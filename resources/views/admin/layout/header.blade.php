@@ -22,15 +22,16 @@
  <!-- MDB -->
  <link rel="stylesheet" href="{{asset('assets/css/mdb.min.css')}}" />
  <link rel="stylesheet" href="{{asset('assets/css/adminLayout.css')}}" />
+
  <link rel="stylesheet" href="{{asset('assets/css/layout.css')}}" />
  <link rel="stylesheet" href="{{asset('assets/css/datatable.css')}}" />
-
+ <link rel="stylesheet" href="{{asset('assets/css/select2.css')}}" />
  <link rel="stylesheet" href="">
  <link href="{{asset('assets/css/datetime.min.css')}}" rel="stylesheet" media="screen" />
  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="{{asset('assets/js/datatable.js')}}"></script>
-  
+  <script src="{{asset('assets/js/select2.min.js')}}"></script>
   </head>
 <body>
   <section class="spinner">

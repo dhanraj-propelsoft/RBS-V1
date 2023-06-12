@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('/personProfile', 'admin/order/personProfile');
         Route::view('/orderDetails', 'admin/order/orderDetails');
         Route::view('/userOrderConfirm', 'admin/order/userOrderConfirm');
+        
     });
     Route::prefix('product')->group(function () {
         Route::view('/productList', 'admin/product/productList');
@@ -70,10 +71,9 @@ Route::group(['middleware' => 'auth'], function () {
      
     });
     Route::prefix('overall')->group(function () {
-        Route::view('/overallList', 'admin/overall/overallList');
-       
-     
+        Route::view('/overallList', 'admin/overall/overallList'); 
     });
+    Route::view('/dashboard', 'admin/dashboard'); 
 
 });
 
