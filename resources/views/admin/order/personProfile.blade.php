@@ -25,58 +25,55 @@
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="gst" name="gst" class="form-control" />
-              <label class="form-label" for="gst">GST</label>
+              <input type="text" id="mobileNumber" value="9090909090" name="mobileNumber" value="" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" readOnly  maxlength="10" />
+              <label class="form-label" for="mobileNumber">Mobile Number<sup class="text-red">*</sup></label>
             </div>
           </div>
         </div>
 
         <div class="row">
 
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="text" id="mobileNumber" name="mobileNumber" value="" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" disabled maxlength="10" />
-              <label class="form-label" for="mobileNumber">Mobile Number<sup class="text-red">*</sup></label>
-            </div>
-          </div>
+         
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="email" id="email" name="email" class="form-control" />
               <label class="form-label" for="email">Email</label>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-
+          
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="text" id="plotNUmber" name="plotNUmber" class="form-control" />
               <label class="form-label" for="plotNUmber">Block/Plot Number </label>
             </div>
           </div>
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="text" id="street" name="street" class="form-control" />
-              <label class="form-label" for="street">Street</label>
-            </div>
-          </div>
         </div>
 
         <div class="row">
 
           <div class="col-md-6 mb-4">
             <div class="form-outline">
+              <input type="text" id="street" name="street" class="form-control" />
+              <label class="form-label" for="street">Street</label>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="form-outline">
               <input type="text" id="city" name="city" class="form-control" />
               <label class="form-label" for="city">City </label>
             </div>
           </div>
-          <div class="col-md-6 mb-4">
+        </div>
+
+    
+
+        
+          <div class="col-md-6  mx-auto mb-4">
             <div class="d-grid gap-2">
               <button class="btn btn-primary">Continue</button>
             </div>
           </div>
-        </div>
+       
 
 
 

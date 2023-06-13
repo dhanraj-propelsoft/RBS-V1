@@ -130,9 +130,9 @@
 								</div>
 
 								<div class="col-md-6 mb-4">
-									<select class="form-select" id="conGrade" name="conGrade" required aria-label="Select option">
+									<select class="form-select select2 col-md-12" style="width:100%;" id="conGrade" name="conGrade" required aria-label="Select option">
 										<option selected disabled>Select an Product</option>
-									
+									<option value="wef">Select2</option>
 										{{-- @foreach($productModels as $productModel)
 										<option value="{{$productModel->id}}">{{$productModel->product_name}}</option>
 										@endforeach --}}
@@ -185,7 +185,7 @@
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
 										<input type="text" id="personName" name="personName" class="form-control" required  billAddress/>
-										<label class="form-label" for="personName">Person Name / Organization Name <sup class="text-red">*</sup></label>
+										<label class="form-label" for="personName">Bill To (Person Name / Organization Name)<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
@@ -225,7 +225,12 @@
 									</div>
 								</div>
 							</div>
-
+<div class="col-md-6 mx-auto mb-4">
+	<div class="form-outline">
+		<input type="number" id="balance" name="balance" class="form-control" />
+		<label class="form-label" for="balance">Net Balance </label>
+	</div>
+</div>
 							<div class="form-group clearfix">
 								<a href="javascript:;" class="form-wizard-previous-btn btn btn-secondary float-start">Previous</a>
 								<button type="submit" class="form-wizard-submit float-end btn btn-primary">Submit</button>

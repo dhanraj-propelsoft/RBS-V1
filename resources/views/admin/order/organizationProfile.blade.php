@@ -34,7 +34,7 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="gst" name="gst" class="form-control" />
+              <input type="text" id="gst"pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}" name="gst" class="form-control" />
               <label class="form-label" for="gst">GST</label>
             </div>
           </div>
@@ -55,48 +55,51 @@
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="contactPerson" name="personName" class="form-control" required/>
-              <label class="form-label" for="contactPerson">Contact Person<sup class="text-red">*</sup> </label>
+              <input type="text" id="city" name="city" class="form-control" />
+              <label class="form-label" for="city">City<sup class="text-red">*</sup> </label>
             </div>
           </div>
+         
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="personDesignation" name="personDesignation" class="form-control" />
-              <label class="form-label" for="personDesignation">Person Designation</label>
+              <input type="text" id="contactPerson" name="personName" class="form-control" required/>
+              <label class="form-label" for="contactPerson">Contact Person<sup class="text-red">*</sup> </label>
             </div>
           </div>
+          <div class="col-md-6 mb-4">
+            <div class="form-outline">
+              <input type="text" id="personDesignation" name="personDesignation" class="form-control" />
+              <label class="form-label" for="personDesignation">Contact Person Designation</label>
+            </div>
+          </div>
+         
+        </div>
+
+
+
+        <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="text" id="mobileNumber" name="mobileNumber"  class="form-control" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" readonly/>
               <label class="form-label" for="mobileNumber">Mobile Number</label>
             </div>
           </div>
-        </div>
-
-
-
-        <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="email" id="personEmail" name="personEmail" class="form-control" />
               <label class="form-label" for="personEmail">Person Email</label>
             </div>
           </div>
-          <div class="col-md-6 mb-4">
-            <div class="d-grid gap-2 ">
-              <button class="btn btn-primary">Continue</button>
-
-            </div>
+        </div>
+        <div class="col-md-6 mx-auto mb-4">
+          <div class="d-grid gap-2 ">
+            <button class="btn btn-primary">Continue</button>
           </div>
         </div>
-
-
-
       </form>
-
     </div>
   </div>
 </div>

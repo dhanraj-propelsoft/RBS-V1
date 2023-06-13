@@ -16,24 +16,24 @@
      
   
         <div class="row">
-          <h5 class="col-md-6">Date:</h5>
-          <p class="col-md-6" data-from="datetime"></p>
+          <h5 class="col-md-6">Order Id & Requested Date:</h5>
+          <p class="col-md-6" data-from="date"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Customer Name:</h5>
+          <h5 class="col-md-6">Date & Time of Supply:</h5>
           <p class="col-md-6" data-from="customerName"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Site Name:</h5>
+          <h5 class="col-md-6">Organisation Name & Number :</h5>
           <p class="col-md-6" data-from="siteName"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Engineer Name:</h5>
-          <p class="col-md-6" data-from="engineerName"></p>
+          <h5 class="col-md-6">Engineer Name & Number:</h5>
+          <p class="col-md-6" data-from="engineer"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Engineer Number:</h5>
-          <p class="col-md-6" data-from="engineerNumber"></p>
+          <h5 class="col-md-6">Party Name & Number:</h5>
+          <p class="col-md-6" data-from="party"></p>
         </div>
         <div class="row">
           <h5 class="col-md-6">Concrete Grade:</h5>
@@ -44,23 +44,27 @@
           <p class="col-md-6" data-from="quantity"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Date & Time of Supply:</h5>
-          <p class="col-md-6" data-from="datetime"></p>
-        </div>
-        <div class="row">
-          <h5 class="col-md-6">Remarks:</h5>
-          <p class="col-md-6" data-from="remarks"></p>
-        </div>
-        <div class="row">
           <h5 class="col-md-6">Service:</h5>
           <p class="col-md-6" data-from="service"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Price:</h5>
-          <p class="col-md-6" data-from="price"></p>
+          <h5 class="col-md-6">T otal Amount:</h5>
+          <p class="col-md-6" data-from="service"></p>
+        </div>
+       
+        <div class="row">
+          <h5 class="col-md-6">Advance:</h5>
+          <p class="col-md-6" data-from="advance"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Site Address:</h5>
+          <h5 class="col-md-6">Balance Amount:</h5>
+          <p class="col-md-6" data-from="balance"></p>
+        </div>
+       
+ 
+      
+        <div class="row">
+          <h5 class="col-md-6">Site Name &  Address:</h5>
           <p class="col-md-6" data-from="siteAddresses"></p>
         </div>
         <div class="row">
@@ -68,48 +72,76 @@
           <p class="col-md-6" data-from="landmark"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Billing Address:</h5>
+          <h5 class="col-md-6">Billing Name & Address:</h5>
           <p class="col-md-6" data-from="billAddresses"></p>
         </div>
+        <div class="row">
+          <h5 class="col-md-6">Remark:</h5>
+          <p class="col-md-6" data-from="remark"></p>
+        </div>
+        <div class="row">
+          <h5 class="col-md-6">Status:</h5>
+          <p class="col-md-6" data-from="status"></p>
+        </div>
+       
         
-      <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-primary  col-6 m-auto order_confirm" >Order Confirm</a>
 
       </div>
+      <div class="card-footer d-flex justify-content-end  gap-3">
+        
+        <div class="dropdown ">  
+          <button
+            class="btn btn-warning text-capitalize dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Pending
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">Pending</a></li>
+            <li><a class="dropdown-item" href="#">Cancel Order</a></li>
+            <li><a class="dropdown-item" href="#">Order Delivered</a></li>
+            <li><a class="dropdown-item" href="#">Confirm Order</a></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-info text-capitalize" data-url="http://127.0.0.1:8000/order/userOrderConfirm" >Copy URL</button>
+        <button type="button" class="btn text-white text-capitalize"  style="background-color: #ac2bac;">Send SMS</button>
+       
+      </div>
+    </div>
       </div>
       </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="orderConfirmModal" tabindex="-1" aria-labelledby="orderConfirmModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="orderConfirmModalLabel">Order Confirmation</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-    <div class="border-bottom pb-2 d-flex justify-content-between">
-      <span class=" btn-link  text-primary">http://127.0.0.1:8000/order/userOrderConfirm</span>
-      <button type="button" class="btn mx-3 btn-primary btn-sm ">Copy Link</button>
-    </div>
-        
-    
-   
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm Order</button>
-      </div>
-    </div>
-  </div>
-</div>
 <script>
   $(function () {
     $(".order_confirm").click(function(){
       $("#orderConfirmModal").modal("show");
 		console.log("worked");
 		});
+
+  $("[data-url]").click(function(){
+    var url =$(this).attr("data-url");
+
+// Create a temporary input element
+var tempInput = document.createElement('input');
+tempInput.value = url;
+document.body.appendChild(tempInput);
+
+// Copy the URL from the input element
+tempInput.select();
+document.execCommand('copy');
+
+// Remove the temporary input element
+document.body.removeChild(tempInput);
+
+// Alert or perform any other action after copying the URL
+swal.fire('URL copied to clipboard!');
+  });  
+  
+
   });
 </script>
 @endsection
