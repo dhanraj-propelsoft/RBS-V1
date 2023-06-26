@@ -64,7 +64,7 @@
 								<div class="col-md-6 mb-4">
 									<!-- Default checkbox -->
 									<div class="form-check" <?php if ($type != "agent") { ?>style="display: none;" <?php } ?>>
-										<input class="form-check-input" type="checkbox" value="" id="partyDetails" name="partyDetails" />
+										<input class="form-check-input" type="checkbox" value="1" id="partyDetails" name="partyDetails" />
 										<label class="form-check-label" for="partyDetails">Party Details</label>
 									</div>
 									<div class="form-check" <?php if ($type != "party") { ?>style="display: none;" <?php } ?>>
@@ -124,6 +124,8 @@
 											<button class="input-group-addon rounded" style="background: transparent;border: 1px solid #bdbdbd;"><span class="fa fa-calendar"></span></button>
 										</div>
 										<input type="hidden" id="dtp_input2" name="date_time" value="" />
+										<input type="hidden"  name="personId" value="{{$personId}}" />
+
 
 
 									</div>
@@ -132,7 +134,7 @@
 								<div class="col-md-6 mb-4">
 									<select class="form-select" id="conGrade" name="conGrade" required aria-label="Select option">
 										<option selected disabled>Select an Product</option>
-									
+
 										@foreach($productModels as $productModel)
 										<option value="{{$productModel->id}}">{{$productModel->product_name}}</option>
 										@endforeach
@@ -237,12 +239,12 @@
 			</div>
 		</div>
 	</section>
-	
+
 
 
 <script>
 	jQuery(document).ready(function() {
-		
+
 		jQuery('.form-wizard-next-btn').click(function() {
 			var parentFieldset = jQuery(this).parents('.wizard-fieldset');
 			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
@@ -250,17 +252,17 @@
 			var nextWizardStep = true;
 			$('.error-input').remove();
 			$('.trailing').remove();
-			
+
 			parentFieldset.find("input , select , textarea").each(function() {
-		
+
 				var input = $(this);
 				var value = input.val();
 				var pattern = input.attr("pattern");
 
-			
+
 				if (input.prop("required") && (value === null || value.trim() === "")) {
 					// Handle required validation error
-				
+
 					if (value === null) {
 
 						input.parent().append("<span class='text-danger error-input'> This is Required</span>");
@@ -351,8 +353,8 @@
 				var pattern = input.attr("pattern");
 				if (input.prop("required") && (value === null || value.trim() === "")) {
 					// Handle required validation error
-				
-					
+
+
 					// input.siblings('.trailing').remove();
 					input.parent().prepend(' <i class="fa fa-warning trailing text-danger"></i>')
 					input.parent().parent().append("<span class='text-danger error-input'> This is Required</span>");
@@ -360,14 +362,14 @@
 				} else if (pattern && value.trim() !== "") {
 					var regex = new RegExp(pattern);
 					if (!regex.test(value)) {
-				
+
 						input.parent().parent().append("<span class='text-danger error-input'> Value is Invalid</span>");
 						nextWizardStep = false;
 					}
 				}
 			});
 			if (nextWizardStep) {
-				
+
 			var siteAddresses = $("input[siteAddress]").map(function() {
 				return $(this).val();
     }).get().filter(function(value) {
@@ -382,7 +384,7 @@
 	var datetime=$("#datetime").val();
     var conGrade=$("#conGrade option:selected").html();
 
-	var quantity=$("#quantity").val();	
+	var quantity=$("#quantity").val();
 
 	var service=$(".service:checked").map(function() {
       return $(this).next().html();
@@ -455,7 +457,7 @@
 		$(".wizard_name").html($(".wizard-fieldset.show").attr('wizard-title'));
 	});
 	$('#partyDetails').on('click', function() {
-		if ($(this).is(':checked')) {		
+		if ($(this).is(':checked')) {
 			$('.customerFields').prop('disabled', false);
 		} else {
 			$('.customerFields').prop('disabled', true);
@@ -463,7 +465,7 @@
 	});
 
 	$('#engineerDetails').on('click', function() {
-		if ($(this).is(':checked')) {		
+		if ($(this).is(':checked')) {
 			$('.engineerFields').prop('disabled', false);
 		} else {
 			$('.engineerFields').prop('disabled', true);

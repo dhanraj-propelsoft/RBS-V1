@@ -13,21 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('person_addresses', function (Blueprint $table) {
+        Schema::create('billing_addresses', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
             $table->integer('person_id');
-            $table->string('site_name',200)->nullable(true);
-            $table->integer('site_plot_no');
+            $table->string('person_name',200);
+            $table->integer('block_plot_number');
             $table->string('street',200);
             $table->string('city',200);
-            $table->string('land_mark',200);
-            $table->integer('party_details')->default(0);
-            $table->string('customer_name',200)->nullable(true);
-            $table->string('customer_number',200)->nullable(true);
-            $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->integer('net_amount')->nullable(true);
+            $table->integer('advance')->nullable(true);
             $table->foreign('person_id')->references('id')->on('persons')
             ->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('person_addresses');
+        Schema::dropIfExists('billing_addresses');
     }
 };

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\BillingAddress;
+use App\Models\OrderDetails;
 use App\Models\Organization;
 use App\Models\OrganizationEmail;
 use App\Models\OrganizationMobile;
@@ -10,10 +12,10 @@ use App\Models\Person;
 use App\Models\PersonAddress;
 use App\Models\PersonEmail;
 use App\Models\PersonMobile;
+use App\Models\PersonServiceType;
 use App\Models\PersonType;
 use App\Models\Product;
 use App\Models\ServiceType;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -37,10 +39,10 @@ class PersonController extends Controller
     public function setUserType(Request $request)
     {
 
-
         $mobileNo = $request->mobileNo;
         $userType = $request->userConfirm;
         if ($userType == 1) {
+
             return view('user.organizationProfile', compact('mobileNo', 'userType'));
         } else {
 
@@ -63,13 +65,12 @@ class PersonController extends Controller
 
         $personModels = $this->convertToPersonModel($request->all());
         $personId = (isset($personModels['id'])) ? $personModels['id'] : "";
-
         $OrgModels = $this->convertToOrganizationModel($request->all(), $personId);
         $type = "agent";
         $ServiceTypes = $this->getServiceType();
         $productModels = $this->getProduct();
 
-        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type', 'personId'));
     }
     public function storeUserCredential(Request $request)
     {
@@ -110,7 +111,7 @@ class PersonController extends Controller
     }
     public function convertToOrganizationModel($datas, $personId = null)
     {
-        $datas = (object)$datas;
+        $datas = (object) $datas;
         if ($datas->organizationName) {
             $orgModel = new Organization();
             $orgModel->organization_name = $datas->organizationName;
@@ -136,7 +137,7 @@ class PersonController extends Controller
 
     public function convertToPersonModel($datas, $userType = null)
     {
-        $datas = (object)$datas;
+        $datas = (object) $datas;
         $personModel = [];
         if (isset($datas->personName)) {
 
@@ -175,6 +176,68 @@ class PersonController extends Controller
     }
     public function storeOrder(Request $request)
     {
-        dd($request->all());
+
+        $site_address = $this->perosonSiteAddress($request->all());
+        $order_details = $this->personOrderDetails($request->all());
+        $billing_address = $this->personBillingAddress($request->all());
+        $person_service_type = $this->personServiceTypes($request->all());
+
+    }
+    public function perosonSiteAddress($datas, $type = null)
+    {
+        $datas = (object) $datas;
+        $model = new PersonAddress();
+        $model->person_id = $datas->personId;
+        $model->site_name = $datas->siteName;
+        $model->site_plot_no = $datas->siteNumber;
+        $model->street = $datas->street;
+        $model->city = $datas->city;
+        $model->land_mark = $datas->landmark;
+        $model->party_details = isset($datas->partyDetails) ? 1 : 0;
+        $model->customer_name = isset($datas->customerName) ? $datas->customerName : null;
+        $model->customer_number = isset($datas->customerMobile) ? $datas->customerMobile : null;
+        $model->save();
+
+    }
+    public function personOrderDetails($datas, $type = null)
+    {
+        $datas = (object) $datas;
+        $model = new OrderDetails();
+        $model->person_id = $datas->personId;
+        $model->date_time = $datas->date_time;
+        $model->product_id = $datas->conGrade;
+        $model->rate_pre_cube = $datas->ratePerCube;
+        $model->quantity = $datas->quantity;
+        $model->remark = $datas->Remarks;
+        $model->save();
+        return $model;
+    }
+    public function personBillingAddress($datas, $type = null)
+    {
+        $datas = (object) $datas;
+        $model = new BillingAddress();
+        $model->person_id = $datas->personId;
+        $model->person_name = $datas->personName;
+        $model->block_plot_number = $datas->blockPlotNumber;
+        $model->street = $datas->streetCityState;
+        $model->city = isset($datas->city) ? $datas->city : null;
+        $model->net_amount = $datas->netAmount;
+        $model->advance = $datas->advance;
+        $model->save();
+        return $model;
+    }
+    public function personServiceTypes($datas)
+    {
+        $ServiceType = count($datas['ServiceType']);
+        if($ServiceType){
+            for ($i = 0; $i < $ServiceType; $i++) {
+                $model[$i] = new PersonServiceType();
+                $model[$i]->person_id = $datas['personId'];
+                $model[$i]->service_type_id = $datas['ServiceType'][$i];
+                $model[$i]->save();
+            }
+            return true;
+        }
+
     }
 }
