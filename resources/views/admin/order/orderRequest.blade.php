@@ -18,7 +18,7 @@
         <span class="fa fa-calendar"></span>
       </span>
       <input class="form-control startDate" id="startDateInput" column-number="4" placeholder="Start Date" type="text" value="">
-     
+
     </div>
     <input type="hidden" id="dtp_input2" value="" />
   </div>
@@ -28,7 +28,7 @@
         <span class="fa fa-calendar"></span>
       </span>
       <input class="form-control endDate" id="endDateInput" column-number="5" placeholder="End Date" type="text" value="">
-      
+
     </div>
     <input type="hidden" id="dtp_input2" value="" />
   </div>
@@ -63,11 +63,11 @@
             <th>Status</th>
             <th>Order By</th>
             <th>Actions</th>
-           
+
         </tr>
     </thead>
     <tbody>
-    
+
     <tr>
       <td>1</td>
       <td class="search-concrete">UUnhlV0fP9</td>
@@ -86,7 +86,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -107,7 +107,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -128,7 +128,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -149,7 +149,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -170,7 +170,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -191,7 +191,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -212,7 +212,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -233,7 +233,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -254,7 +254,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -275,7 +275,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -296,7 +296,7 @@
       </button>
     </td>
 
-   
+
   </tr>
 
           <tr>
@@ -317,11 +317,11 @@
       </button>
     </td>
 
-   
+
   </tr>
-  
+
       </tbody>
-      
+
 </table>
 <!-- Modal -->
 <div class="modal fade " id="view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -333,7 +333,7 @@
         <button class="btn btn-success mx-2">Edit</button>
         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
        </div>
-        
+
       </div>
       <div class="modal-body">
         <div class="row">
@@ -372,7 +372,7 @@
           <h5 class="col-md-6">T otal Amount:</h5>
           <p class="col-md-6" data-from="service"></p>
         </div>
-       
+
         <div class="row">
           <h5 class="col-md-6">Advance:</h5>
           <p class="col-md-6" data-from="advance"></p>
@@ -381,9 +381,9 @@
           <h5 class="col-md-6">Balance Amount:</h5>
           <p class="col-md-6" data-from="balance"></p>
         </div>
-       
- 
-      
+
+
+
         <div class="row">
           <h5 class="col-md-6">Site Name &  Address:</h5>
           <p class="col-md-6" data-from="siteAddresses"></p>
@@ -404,8 +404,8 @@
           <h5 class="col-md-6">Status:</h5>
           <p class="col-md-6" data-from="status"></p>
         </div>
-       
-        
+
+
 
       </div>
       <div class="modal-footer">
@@ -428,15 +428,15 @@
         </div>
         <button type="button" class="btn btn-info text-capitalize">Copy URL</button>
         <button type="button" class="btn text-white text-capitalize"  style="background-color: #ac2bac;">Send SMS</button>
-       
+
       </div>
     </div>
   </div>
 </div>
     <script>
-  
+
  $(document).ready(function() {
- 
+
   var table = $('#orderTable').DataTable({
   searching: false,
   "scrollY": "calc(100vh - 230px)",
@@ -461,7 +461,7 @@ $(document).on('click' , ".remove-date",function(){
 
 });
 
-$(".navbar .container-fluid").append("<a href='/order/addNewOrder' class='btn btn-primary btn-sm'>Add Order</a>");
-   
+$(".navbar .container-fluid").append("<a href='{{ route('order.addNewOrder') }}' class='btn btn-primary btn-sm'>Add Order</a>");
+
     </script>
 @endsection

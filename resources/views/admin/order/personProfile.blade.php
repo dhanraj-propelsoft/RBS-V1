@@ -12,9 +12,10 @@
 
     </div>
     <div class="card-body">
-      <form name="form" method="post" action="">
+      <form name="form" method="post" action="{{url('personStore')}}">
         @csrf
-        <input type="hidden" name="userType" id="userType" required value="" />
+        <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
+        <input type="hidden" name="link"  value="admin" />
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row">
           <div class="col-md-6 mb-4">
@@ -25,7 +26,7 @@
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="mobileNumber" value="9090909090" name="mobileNumber" value="" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" readOnly  maxlength="10" />
+              <input type="text" id="mobileNumber" value="{{$mobile}}" name="mobileNumber" value="" class="form-control" required pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" readOnly  maxlength="10" />
               <label class="form-label" for="mobileNumber">Mobile Number<sup class="text-red">*</sup></label>
             </div>
           </div>
@@ -33,14 +34,14 @@
 
         <div class="row">
 
-         
+
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="email" id="email" name="email" class="form-control" />
+              <input type="email" id="email" name="personEmail" class="form-control" />
               <label class="form-label" for="email">Email</label>
             </div>
           </div>
-          
+
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="text" id="plotNUmber" name="plotNUmber" class="form-control" />
@@ -65,15 +66,15 @@
           </div>
         </div>
 
-    
 
-        
+
+
           <div class="col-md-6  mx-auto mb-4">
             <div class="d-grid gap-2">
               <button class="btn btn-primary">Continue</button>
             </div>
           </div>
-       
+
 
 
 

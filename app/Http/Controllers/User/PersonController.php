@@ -52,25 +52,40 @@ class PersonController extends Controller
     public function personStore(Request $request)
     {
 
-        $personModels = $this->convertToPersonModel($request->all(), 2);
-        $type = "party";
+        $userType = isset($request->userType) ? $request->userType : 0;
+        $personModels = $this->convertToPersonModel($request->all(), $userType);
+        $personId = (isset($personModels['id'])) ? $personModels['id'] : "";
+        $mobile = (isset($personModels['mobile'])) ? $personModels['mobile'] : "";
 
+        $type = "party";
         $ServiceTypes = $this->getServiceType();
         $productModels = $this->getProduct();
+        if (isset($request->link) && $request->link == 'admin') {
 
-        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId'));
+        } else {
+            return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
+        }
     }
     public function agentStore(Request $request)
     {
-
-        $personModels = $this->convertToPersonModel($request->all());
+        $userType = isset($request->userType) ? $request->userType : 0;
+        $personModels = $this->convertToPersonModel($request->all(), $userType);
         $personId = (isset($personModels['id'])) ? $personModels['id'] : "";
+        $mobile = (isset($personModels['mobile'])) ? $personModels['mobile'] : "";
         $OrgModels = $this->convertToOrganizationModel($request->all(), $personId);
         $type = "agent";
         $ServiceTypes = $this->getServiceType();
         $productModels = $this->getProduct();
 
-        return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type', 'personId'));
+        if (isset($request->link) && $request->link == 'admin') {
+
+            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId'));
+        } else {
+
+            return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type', 'personId'));
+
+        }
     }
     public function storeUserCredential(Request $request)
     {
@@ -166,7 +181,7 @@ class PersonController extends Controller
             }
         }
         if ($personModel) {
-            $res = ['response' => "Success", 'id' => $personModel->id];
+            $res = ['response' => "Success", 'id' => $personModel->id, 'mobile' => $personMobile->mobile_no];
             return $res;
         } else {
 
@@ -182,6 +197,9 @@ class PersonController extends Controller
         $billing_address = $this->personBillingAddress($request->all());
         $person_service_type = $this->personServiceTypes($request->all());
 
+        if (isset($request->link) && $request->link == 'admin') {
+            return redirect('order/addNewOrder');
+        }
     }
     public function perosonSiteAddress($datas, $type = null)
     {
@@ -220,16 +238,17 @@ class PersonController extends Controller
         $model->person_name = $datas->personName;
         $model->block_plot_number = $datas->blockPlotNumber;
         $model->street = $datas->streetCityState;
-        $model->city = isset($datas->city) ? $datas->city : null;
+        $model->city = isset($datas->cities) ? $datas->cities : null;
         $model->net_amount = $datas->netAmount;
         $model->advance = $datas->advance;
+        $model->net_balance = isset($datas->balance) ? $datas->balance : 0;
         $model->save();
         return $model;
     }
     public function personServiceTypes($datas)
     {
         $ServiceType = count($datas['ServiceType']);
-        if($ServiceType){
+        if ($ServiceType) {
             for ($i = 0; $i < $ServiceType; $i++) {
                 $model[$i] = new PersonServiceType();
                 $model[$i]->person_id = $datas['personId'];
@@ -239,5 +258,39 @@ class PersonController extends Controller
             return true;
         }
 
+    }
+    public function checkPerson(Request $request)
+    {
+        $mobile = $request->mobile;
+        $personId = $request->personId;
+        if ($personId) {
+            $ServiceTypes = $this->getServiceType();
+            $productModels = $this->getProduct();
+            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId'));
+        }
+    }
+    public function addNewOrder(Request $request)
+    {
+        $models = Person::select('persons.id', 'persons.name', 'person_mobiles.mobile_no', 'person_emails.email', 'organizations.organization_name')
+            ->leftjoin('person_mobiles', 'person_mobiles.person_id', '=', 'persons.id')
+            ->leftjoin('person_emails', 'person_emails.person_id', '=', 'persons.id')
+            ->leftjoin('organizations', 'organizations.person_id', '=', 'persons.id')
+            ->get()->toArray();
+        return view('admin.order.addOrder', compact('models'));
+    }
+    public function createAccount(Request $request)
+    {
+// dd($request->all());
+        $userType = $request->userConfirm;
+        $mobile = $request->mobileNumber;
+        $ServiceTypes = $this->getServiceType();
+        $productModels = $this->getProduct();
+        if (isset($request->userConfirm) && $request->userConfirm == 1) {
+
+            return view('admin.order.organizationProfile', compact('productModels', 'ServiceTypes', 'mobile', 'userType'));
+        } else if (isset($request->userConfirm) && $request->userConfirm == 2) {
+
+            return view('admin.order.personProfile', compact('productModels', 'ServiceTypes', 'mobile', 'userType'));
+        }
     }
 }

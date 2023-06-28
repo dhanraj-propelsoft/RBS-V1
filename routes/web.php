@@ -53,27 +53,27 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::prefix('order')->group(function () {
         Route::view('/orderRequest', 'admin/order/orderRequest');
-        Route::view('/addNewOrder', 'admin/order/addOrder');
-        Route::view('/checkPerson', 'admin/order/checkPerson');
-        Route::view('/orgProfile', 'admin/order/organizationProfile');
+        Route::get('/addNewOrder', [PersonController::class, 'addNewOrder'])->name('order.addNewOrder');
+        Route::post('/checkPerson', [PersonController::class, 'checkPerson'])->name('order.checkPerson');
+        Route::post('/createAccount', [PersonController::class, 'createAccount'])->name('order.createAccount');
         Route::view('/personProfile', 'admin/order/personProfile');
-        Route::view('/orderDetails', 'admin/order/orderDetails');
+        Route::view('/orderDetails', 'admin/order/orderDetails')->name('order.orderDetails');
         Route::view('/userOrderConfirm', 'admin/order/userOrderConfirm');
-        
+
     });
     Route::prefix('product')->group(function () {
         Route::view('/productList', 'admin/product/productList');
-     
+
     });
     Route::prefix('service')->group(function () {
         Route::view('/serviceList', 'admin/service/serviceList');
         Route::view('/add', 'admin/service/add');
-     
+
     });
     Route::prefix('overall')->group(function () {
-        Route::view('/overallList', 'admin/overall/overallList'); 
+        Route::view('/overallList', 'admin/overall/overallList');
     });
-    Route::view('/dashboard', 'admin/dashboard'); 
+    Route::view('/dashboard', 'admin/dashboard');
 
 });
 

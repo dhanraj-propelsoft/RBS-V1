@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('city',200);
             $table->integer('net_amount')->nullable(true);
             $table->integer('advance')->nullable(true);
+            $table->integer('net_balance')->nullable(true);
             $table->foreign('person_id')->references('id')->on('persons')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

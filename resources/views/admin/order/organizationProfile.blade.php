@@ -14,7 +14,8 @@
     <div class="card-body">
       <form name="form" method="post" action="{{url('agentStore')}}">
         @csrf
-        <input type="hidden" name="userType" id="userType" />
+        <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
+        <input type="hidden" name="link"  value="admin" />
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row">
           <div class="col-md-6 mb-4">
@@ -34,7 +35,7 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="gst"pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}" name="gst" class="form-control" />
+              <input type="text" id="gst" pattern="[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}" name="gst" class="form-control" />
               <label class="form-label" for="gst">GST</label>
             </div>
           </div>
@@ -59,7 +60,7 @@
               <label class="form-label" for="city">City<sup class="text-red">*</sup> </label>
             </div>
           </div>
-         
+
         </div>
 
         <div class="row">
@@ -75,7 +76,7 @@
               <label class="form-label" for="personDesignation">Contact Person Designation</label>
             </div>
           </div>
-         
+
         </div>
 
 
@@ -83,7 +84,7 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="mobileNumber" name="mobileNumber"  class="form-control" pattern="[0-9]{10,10}" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" readonly/>
+              <input type="text" id="mobileNumber" name="mobileNumber"  class="form-control" pattern="[0-9]{10,10}" value="{{$mobile}}" maxlength="10" readonly/>
               <label class="form-label" for="mobileNumber">Mobile Number</label>
             </div>
           </div>
