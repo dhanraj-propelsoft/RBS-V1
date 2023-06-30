@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::post('getPriceByProduct_id', [PersonController::class, 'getPriceByProduct_id'])->name('getPriceByProduct_id');
 
 Route::post('findByMobileNumber', [PersonController::class, 'findByMobileNumber']);
 Route::post('setUserType', [PersonController::class, 'setUserType']);

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_types', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
-            $table->string('service_name',200)->nullable(true);
-            $table->string('price',200)->nullable(true);
-            $table->text('description',200)->nullable(true);
-            $table->integer('status')->default(1);
+            $table->string('order_id',200)->nullable(true);
+            $table->integer('status')->nullable(true);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_types');
+        Schema::dropIfExists('orders');
     }
 };

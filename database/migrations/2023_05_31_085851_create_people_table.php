@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
-            $table->string('name',200);          
+            $table->string('name',200);
+            $table->string('designation',200)->nullable(true);
             $table->date('dob')->nullable(true);
             $table->string('birth_blace',200)->nullable(true);
             $table->integer('gender_id')->nullable(true);

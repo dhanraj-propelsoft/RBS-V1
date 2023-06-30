@@ -9,7 +9,7 @@
                     <div class="form-wizard">
                         <form name="form" method="post" action="{{ url('storeOrder') }}">
                             @csrf
-							<input type="hidden" name="link" value="admin">
+                            <input type="hidden" name="link" value="admin">
                             <div class="form-wizard-header">
                                 <button type="button" class="btn-close float-end" aria-label="Close"></button>
                                 <h5 class="text-center wizard_name">Site Address</h5>
@@ -115,7 +115,10 @@
 
 
                                 <div class="row" <?php //if ($type != "party") {
-                                ?>style="display: none;" <?php// } ?> ?>>
+                                ?>style="display: none;" <?php// } ?> ?> ?> ?> ?>
+                                    ?>
+                                    ?>
+                                    ?>>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="engineerName" name="engineerName"
@@ -164,8 +167,8 @@
                                     </div>
 
                                     <div class="col-md-6 mb-4">
-                                        <select class="form-select select2 col-md-12" style="width:100%;" id="conGrade"
-                                            name="conGrade" required aria-label="Select option">
+                                        <select class="form-select select2 col-md-12 product_id" style="width:100%;"
+                                            id="conGrade" name="conGrade" required aria-label="Select option">
                                             <option selected disabled>Select an Product</option>
                                             @foreach ($productModels as $productModel)
                                                 <option value="{{ $productModel->id }}">{{ $productModel->product_name }}
@@ -178,8 +181,8 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="ratePerCube" class="form-control" value="30"
-                                                name="ratePerCube" />
+                                            <input type="text" id="ratePerCube" class="form-control"
+                                                name="ratePerCube" readonly/>
                                             <label class="form-label" for="ratePerCube">Rate per m<sup>3</sup></label>
                                         </div>
                                     </div>
@@ -225,7 +228,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="personName" name="personName" class="form-control"
+                                            <input type="text" id="personName" name="billingName" class="form-control"
                                                 required billAddress />
                                             <label class="form-label" for="personName">Bill To (Person Name / Organization
                                                 Name)<sup class="text-red">*</sup></label>
@@ -323,18 +326,18 @@
 
                                 input.parent().append(
                                     "<span class='text-danger error-input'> This is Required</span>"
-                                    );
+                                );
                             } else {
                                 if (input.attr('id') == "datetime") {
                                     input.parent().parent().append(
                                         "<span class='text-danger error-input'> This is Required</span>"
-                                        );
+                                    );
                                 } else {
                                     input.parent().prepend(
                                         ' <i class="fa fa-warning trailing text-danger"></i>')
                                     input.parent().parent().append(
                                         "<span class='text-danger error-input'> This is Required</span>"
-                                        );
+                                    );
                                 }
 
                             }
@@ -345,7 +348,7 @@
                             if (!regex.test(value)) {
                                 input.parent().parent().append(
                                     "<span class='text-danger error-input'> Value is Invalid</span>"
-                                    );
+                                );
                                 nextWizardStep = false;
                             }
                         }
@@ -438,7 +441,7 @@
 
                                 input.parent().parent().append(
                                     "<span class='text-danger error-input'> Value is Invalid</span>"
-                                    );
+                                );
                                 nextWizardStep = false;
                             }
                         }
@@ -544,6 +547,34 @@
                     $('.engineerFields').prop('disabled', false);
                 } else {
                     $('.engineerFields').prop('disabled', true);
+                }
+            });
+
+
+            $('.product_id').on('change', function() {
+                var product_id = $(this).val();
+                if (product_id) {
+                    $.ajax({
+                        url: "{{ route('getPriceByProduct_id') }}",
+                        type: 'ajax',
+                        method: 'post',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            id: product_id,
+                        },
+                        success: function(data) {
+                            if (data) {
+                                $('#ratePerCube').val(data['special_price']);
+                            }
+
+
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+
+                    });
+
                 }
             });
         </script>

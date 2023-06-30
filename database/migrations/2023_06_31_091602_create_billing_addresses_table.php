@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('billing_addresses', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
-            $table->string('organization_name',200);
-            $table->integer('title_id')->nullable(true);
-            $table->integer('person_id')->nullable(true);
-            $table->string('gst',200)->nullable(true);
+            $table->integer('order_id');
+            $table->string('billing_name',200)->nullable(true);
             $table->string('plot_number',200)->nullable(true);
-            $table->string('street',200)->nullable(true);
-            $table->string('city',200)->nullable(true);
-            $table->integer('status')->default(1);
+            $table->string('street',200);
+            $table->string('city',200);
+            $table->integer('status')->nullable(true);
+            $table->foreign('order_id')->references('id')->on('orders')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('billing_addresses');
     }
 };
