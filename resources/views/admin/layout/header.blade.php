@@ -12,6 +12,7 @@
    rel="stylesheet"
    href="{{asset('assets/icon/font-awesome/css/font-awesome.min.css')}}"
  />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.css">
  <!-- Google Fonts Roboto -->
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +29,7 @@
  <link rel="stylesheet" href="{{asset('assets/css/select2.css')}}" />
  <link rel="stylesheet" href="">
  <link href="{{asset('assets/css/datetime.min.css')}}" rel="stylesheet" media="screen" />
- 
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="{{asset('assets/js/datatable.js')}}"></script>
   <script src="{{asset('assets/js/select2.min.js')}}"></script>
@@ -55,8 +56,7 @@
           <i class="fa fa-navicon"></i>
         </button>
       </div>
-   
+
     </div>
-    
+
   </nav>
-  

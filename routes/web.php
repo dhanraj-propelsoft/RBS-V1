@@ -63,9 +63,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('/userOrderConfirm', 'admin/order/userOrderConfirm');
 
     });
-   
+
         Route::resource('product', ProductController::class);
         Route::resource('ServiceType', ServiceTypeController::class);
+        Route::post('/productDestory', [ProductController::class, 'productDestory'])->name('productDestory');
+        Route::post('/serviceDestory', [ServiceTypeController::class, 'serviceDestory'])->name('serviceDestory');
+
 
 
     Route::prefix('service')->group(function () {

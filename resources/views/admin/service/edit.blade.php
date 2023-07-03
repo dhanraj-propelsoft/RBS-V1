@@ -5,16 +5,18 @@
             <h5 class="card-title">Service Details</h5>
             <form action="{{ route('ServiceType.store') }}" method="post">
                 @csrf
+                <input type="hidden" name="service_id" value="{{$service['id']}}">
+
                 <div class="row">
                     <div class="col-6">
                         <div class="form-outline mb-3 ">
-                            <input type="text" class="form-control" id="serviceName" name="serviceName" placeholder="Service Name">
+                            <input type="text" class="form-control" value="{{$service['service_name']}}" id="serviceName" name="serviceName" placeholder="Service Name">
                             <label class="form-label" for="serviceName">Service Name</label>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-outline mb-3 ">
-                            <input type="text" class="form-control" name="description" id="description" placeholder="Description">
+                            <input type="text" class="form-control" value="{{$service['description']}}" name="description" id="description" placeholder="Description">
                             <label class="form-label" for="description">Description</label>
                         </div>
                     </div>
@@ -32,28 +34,30 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($service_array as $data)
                         <tr>
                             <td>
                                 <div class="form-outline">
-                                    <input type="date" class="form-control" name="effectiveDate[]" id="effectiveDate"
+                                    <input type="date" class="form-control" value="{{$data['eff_date']}}" name="effectiveDate[]" id="effectiveDate"
                                         placeholder="Effective Date">
                                     <label class="form-label"for="effectiveDate">Effective Date</label>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline">
-                                    <input type="number" class="form-control" id="mrp" name="mrp[]" placeholder="MRP">
+                                    <input value="{{$data['mrp']}}" type="number" class="form-control" id="mrp" name="mrp[]" placeholder="MRP">
                                     <label class="form-label"for="mrp">MRP</label>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline">
-                                    <input type="number" class="form-control" name="specialPrice[]" id="specialPrice"
+                                    <input   value="{{$data['special_price']}}" type="number" class="form-control" name="specialPrice[]" id="specialPrice"
                                         placeholder="Special Price">
                                     <label class="form-label"for="specialPrice">Special Price</label>
                                 </div>
                             </td>
                         </tr>
+                        @endforeach
                         <!-- Additional rows can be added dynamically -->
                     </tbody>
                 </table>
@@ -64,7 +68,6 @@
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-secondary me-md-2" type="button">Reset</button>
                     <button class="btn btn-secondary me-md-2" type="button"  onclick="history.back();">Back</button>
                     <button class="btn btn-primary" >Submit</button>
                 </div>

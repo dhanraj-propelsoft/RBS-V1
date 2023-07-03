@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
-            $table->integer('product_id'); 
-            $table->date('eff_date')->nullable(true); 
-            $table->integer('mrp'); 
-            $table->integer('discount'); 
-            $table->integer('special_price'); 
-            $table->integer('tax');                  
-            $table->integer('status')->default(1);             
+            $table->integer('product_id');
+            $table->date('eff_date')->nullable(true);
+            $table->integer('mrp')->nullable(true);
+            $table->integer('discount')->nullable(true);
+            $table->integer('special_price')->nullable(true);
+            $table->integer('tax')->nullable(true);
+            $table->integer('status')->default(1);
+            $table->foreign('product_id')->references('id')->on('products')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
