@@ -57,8 +57,8 @@ $(document).on('click' , ".remove-date",function(){
 });
 
 });
-
-$(".navbar .container-fluid").append("<a href='/service/add' class='btn btn-primary btn-sm'>Add Service</a>");
+var addUrl = '{{ route("ServiceType.create") }}';
+$(".navbar .container-fluid").append("<a href='"+addUrl+"' class='btn btn-primary btn-sm'>Add Service</a>");
    
     </script>
 @endsection

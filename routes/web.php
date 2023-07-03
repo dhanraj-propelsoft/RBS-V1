@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashbordController;
+use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\ServiceType\ServiceTypeController;
 use App\Http\Controllers\User\PersonController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -61,10 +63,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('/userOrderConfirm', 'admin/order/userOrderConfirm');
 
     });
-    Route::prefix('product')->group(function () {
-        Route::view('/productList', 'admin/product/productList');
+   
+        Route::resource('product', ProductController::class);
+        Route::resource('ServiceType', ServiceTypeController::class);
 
-    });
+
     Route::prefix('service')->group(function () {
         Route::view('/serviceList', 'admin/service/serviceList');
         Route::view('/add', 'admin/service/add');

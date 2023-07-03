@@ -16,13 +16,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/product/productList" class="nav-link  {{ request()->is('product*') ? 'bg-primary text-white ' : 'link-dark' }}">
+        <a href="{{url('product')}}" class="nav-link  {{ request()->is('product*') ? 'bg-primary text-white ' : 'link-dark' }}">
           <i class="fa fa-cube mx-2"></i>
           Product
         </a>
       </li>
       <li class="nav-item">
-        <a href="/service/serviceList" class="nav-link {{ request()->is('service*') ? 'bg-primary text-white ' : 'link-dark' }}">
+        <a href="{{url('ServiceType')}}" class="nav-link {{ request()->is('service*') ? 'bg-primary text-white ' : 'link-dark' }}">
           <i class="fa fa-cogs mx-2"></i>
           Services
         </a>

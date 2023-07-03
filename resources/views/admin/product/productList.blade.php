@@ -53,8 +53,8 @@ $(document).on('click' , ".remove-date",function(){
 });
 
 });
-
-$(".navbar .container-fluid").append("<a href='/product/add' class='btn btn-primary btn-sm'>Add Product</a>");
+var addUrl = '{{ route("product.create") }}';
+$(".navbar .container-fluid").append("<a href='"+addUrl+"' class='btn btn-primary btn-sm'>Add Product</a>");
    
     </script>
 @endsection
