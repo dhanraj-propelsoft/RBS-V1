@@ -94,3 +94,5 @@ Route::get('orderPage/{type}', [PersonController::class, 'orderPage']);
 
 Route::post('personStore', [PersonController::class, 'personStore']);
 Route::post('agentStore', [PersonController::class, 'agentStore']);
+Route::post('checkMobileNumberForAgent', [PersonController::class, 'checkMobileNumberForAgent'])->name('checkMobileNumberForAgent');
+Route::post('checkMobileNumberForParty', [PersonController::class, 'checkMobileNumberForParty'])->name('checkMobileNumberForParty');

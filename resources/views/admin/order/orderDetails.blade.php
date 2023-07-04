@@ -10,6 +10,7 @@
                         <form name="form" method="post" action="{{ url('storeOrder') }}">
                             @csrf
                             <input type="hidden" name="link" value="admin">
+                            <input type="hidden" name="userType" id="userType" value="{{ $userType }}" />
                             <div class="form-wizard-header">
                                 <button type="button" class="btn-close float-end" aria-label="Close"></button>
                                 <h5 class="text-center wizard_name">Site Address</h5>
@@ -73,38 +74,38 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <!-- Default checkbox -->
-                                        <div class="form-check" <?php //if ($type != "agent") {
+                                        <div class="form-check" <?php if ($type != "agent") {
                                         ?>style="display: none;"
-                                            <?php //}
+                                            <?php }
                                             ?>>
-                                            <input class="form-check-input" type="checkbox" value="" id="partyDetails"
+                                            <input class="form-check-input" type="checkbox" value="1" id="partyDetails"
                                                 name="partyDetails" />
                                             <label class="form-check-label" for="partyDetails">Party Details</label>
                                         </div>
-                                        <div class="form-check" <?php //if ($type != "party") {
+                                        <div class="form-check" <?php if ($type != "party") {
                                         ?>style="display: none;"
-                                            <?php //}
+                                            <?php }
                                             ?>>
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" type="checkbox" value="2"
                                                 id="engineerDetails" name="engineerDetails" />
                                             <label class="form-check-label" for="engineerDetails">Engineer Details</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" <?php //if ($type != "agent") {
-                                ?>style="display: none;" <?php //}
+                                <div class="row" <?php if ($type != "agent") {
+                                ?>style="display: none;" <?php }
                                 ?>>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="customerName" class="form-control customerFields"
-                                                disabled name="customerName" />
+                                                disabled name="personName" />
                                             <label class="form-label" for="customerName">Customer Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="customerMobile" class="form-control customerFields"
-                                                disabled name="customerMobile" pattern="[0-9]{10,10}"
+                                                disabled name="mobileNumber" pattern="[0-9]{10,10}"
                                                 oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" />
                                             <label class="form-label" for="customerMobile">Customer Mobile Number</label>
                                         </div>
@@ -114,21 +115,18 @@
 
 
 
-                                <div class="row" <?php //if ($type != "party") {
-                                ?>style="display: none;" <?php// } ?> ?> ?> ?> ?>
-                                    ?>
-                                    ?>
-                                    ?>>
+                                <div class="row" <?php if ($type != "party") {
+                                ?>style="display: none;" <?php } ?> ?>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="engineerName" name="engineerName"
+                                            <input type="text" id="engineerName" name="personName"
                                                 class="form-control engineerFields" disabled />
                                             <label class="form-label" for="engineerName">Engineer Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="engineerMobile" name="engineerMobile"
+                                            <input type="text" id="engineerMobile" name="mobileNumber"
                                                 class="form-control engineerFields"
                                                 oninput="this.value=this.value.replace(/[^\d]/,'')" pattern="[0-9]{10,10}"
                                                 maxlength="10" disabled />
@@ -138,7 +136,8 @@
                                 </div>
 
                                 <div class="form-group clearfix">
-                                    <a href="javascript:;" class="form-wizard-next-btn float-end btn btn-primary">Next</a>
+                                    <a href="javascript:;"
+                                        class="form-wizard-next-btn float-end btn btn-primary nxt_btn">Next</a>
                                 </div>
                             </fieldset>
                             <fieldset class="wizard-fieldset" wizard-title="Your Order">
@@ -182,7 +181,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="ratePerCube" class="form-control"
-                                                name="ratePerCube" readonly/>
+                                                name="ratePerCube" readonly />
                                             <label class="form-label" for="ratePerCube">Rate per m<sup>3</sup></label>
                                         </div>
                                     </div>
@@ -228,8 +227,8 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="personName" name="billingName" class="form-control"
-                                                required billAddress />
+                                            <input type="text" id="personName" name="billingName"
+                                                class="form-control" required billAddress />
                                             <label class="form-label" for="personName">Bill To (Person Name / Organization
                                                 Name)<sup class="text-red">*</sup></label>
                                         </div>
@@ -304,6 +303,7 @@
             jQuery(document).ready(function() {
 
                 jQuery('.form-wizard-next-btn').click(function() {
+
                     var parentFieldset = jQuery(this).parents('.wizard-fieldset');
                     var currentActiveStep = jQuery(this).parents('.form-wizard').find(
                         '.form-wizard-steps .active');
@@ -537,17 +537,79 @@
             $('#partyDetails').on('click', function() {
                 if ($(this).is(':checked')) {
                     $('.customerFields').prop('disabled', false);
+                    $('.customerFields').attr('required', true);
                 } else {
+
                     $('.customerFields').prop('disabled', true);
+                    $('.customerFields').attr('required', false);
                 }
             });
 
             $('#engineerDetails').on('click', function() {
                 if ($(this).is(':checked')) {
                     $('.engineerFields').prop('disabled', false);
+                    $('.engineerFields').attr('required', true);
                 } else {
+                    $('.engineerFields').attr('required', false);
                     $('.engineerFields').prop('disabled', true);
                 }
+            });
+            $('#customerMobile').on('blur', function() {
+                var number = $('#customerMobile').val();
+                if (number) {
+                    $.ajax({
+                        url: "{{ route('checkMobileNumberForAgent') }}",
+                        type: 'ajax',
+                        method: 'post',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            number: number,
+                        },
+                        success: function(data) {
+                            if (data) {
+
+                                alert('this number already Exists in Agent');
+                            } else {
+
+                            }
+
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+
+                    });
+
+                }
+
+            });
+            $('#engineerMobile').on('blur', function() {
+                var number = $('#engineerMobile').val();
+                if (number) {
+                    $.ajax({
+                        url: "{{ route('checkMobileNumberForParty') }}",
+                        type: 'ajax',
+                        method: 'post',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            number: number,
+                        },
+                        success: function(data) {
+                            if (data) {
+                                alert('this number already Exists in Party');
+                            } else {
+
+                            }
+
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+
+                    });
+
+                }
+
             });
 
 

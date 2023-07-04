@@ -29,6 +29,7 @@
                                             <label class="form-label" for="siteName">Site Name</label>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="siteNumber" class="form-control" name="siteNumber"
@@ -96,7 +97,7 @@
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="mobileNumber" class="form-control customerFields"
+                                            <input type="text" id="customerMobile" class="form-control customerFields"
                                                 disabled name="mobileNumber" pattern="[0-9]{10,10}"
                                                 oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" />
                                             <label class="form-label" for="customerMobile">Customer Mobile Number</label>
@@ -110,14 +111,14 @@
                                 <div class="row" <?php if ($type != "party") { ?>style="display: none;" <?php } ?>>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="engineerName" name="engineerName"
+                                            <input type="text" id="engineerName" name="personName"
                                                 class="form-control engineerFields" disabled />
                                             <label class="form-label" for="engineerName">Engineer Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="engineerMobile" name="engineerMobile"
+                                            <input type="text" id="engineerMobile" name="mobileNumber"
                                                 class="form-control engineerFields"
                                                 oninput="this.value=this.value.replace(/[^\d]/,'')" pattern="[0-9]{10,10}"
                                                 maxlength="10" disabled />
@@ -524,18 +525,81 @@
             $('#partyDetails').on('click', function() {
                 if ($(this).is(':checked')) {
                     $('.customerFields').prop('disabled', false);
+                    $('.customerFields').attr('required', true);
                 } else {
                     $('.customerFields').prop('disabled', true);
+                    $('.customerFields').attr('required', false);
                 }
             });
 
             $('#engineerDetails').on('click', function() {
                 if ($(this).is(':checked')) {
                     $('.engineerFields').prop('disabled', false);
+                    $('.engineerFields').attr('required', true);
                 } else {
                     $('.engineerFields').prop('disabled', true);
+                    $('.engineerFields').attr('required', false);
                 }
             });
+            $('#customerMobile').on('blur', function() {
+                var number = $('#customerMobile').val();
+                if (number) {
+                    $.ajax({
+                        url: "{{ route('checkMobileNumberForAgent') }}",
+                        type: 'ajax',
+                        method: 'post',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            number: number,
+                        },
+                        success: function(data) {
+                            if (data) {
+
+                                alert('this number already Exists in Agent');
+                            } else {
+
+                            }
+
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+
+                    });
+
+                }
+
+            });
+            $('#engineerMobile').on('blur', function() {
+                var number = $('#engineerMobile').val();
+                if (number) {
+                    $.ajax({
+                        url: "{{ route('checkMobileNumberForParty') }}",
+                        type: 'ajax',
+                        method: 'post',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            number: number,
+                        },
+                        success: function(data) {
+                            if (data) {
+                                alert('this number already Exists in Party');
+                            } else {
+
+                            }
+
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+
+                    });
+
+                }
+
+            });
+
+
             $('.product_id').on('change', function() {
                 var product_id = $(this).val();
                 if (product_id) {

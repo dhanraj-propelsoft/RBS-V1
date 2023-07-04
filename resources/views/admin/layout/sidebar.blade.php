@@ -1,7 +1,7 @@
 
 <div class="custom-container container-fluid p-0" >
   <div class="sidebar-29-05-2023 d-flex flex-column flex-shrink-0 p-3 bg-light" >
- 
+
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="#" class="nav-link link-dark" >
@@ -29,7 +29,7 @@
       </li>
       <li class="nav-item">
         <a href="/overall/overallList" class="nav-link {{ request()->is('overall*') ? 'bg-primary text-white ' : 'link-dark' }}">
- 
+
           <i class="fa fa-bar-chart mx-2"></i>
           Overall Orders
         </a>
@@ -39,11 +39,12 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle gap-2" id="dropdownUser2" data-mdb-toggle="dropdown" aria-expanded="false">
         <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style="width:35px;height:35px;" >
-          @if(Auth()->user()->first_name)
+
+          @if(isset(Auth()->user()->first_name))
             {{ ucfirst(substr(Auth()->user()->first_name, 0, 1)) }}
             @endif
           </div>
-<strong >@if(Auth()->user()->first_name)
+<strong >@if(isset(Auth()->user()->first_name))
           {{ ucfirst(Auth()->user()->first_name) }}
           @endif</strong>
       </a>
@@ -56,7 +57,7 @@
       </ul>
     </div>
   </div>
-  
+
   <div class="workstation-29-05-2023 m-3">
-  
- 
+
+

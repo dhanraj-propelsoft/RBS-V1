@@ -65,8 +65,10 @@ class PersonController extends Controller
         $ServiceTypes = $this->getServiceType();
         $productModels = $this->getProduct();
         if (isset($request->link) && $request->link == 'admin') {
-            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId'));
+
+            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId', 'type', 'userType'));
         } else {
+
             return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type'));
         }
     }
@@ -84,10 +86,10 @@ class PersonController extends Controller
 
         if (isset($request->link) && $request->link == 'admin') {
 
-            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId'));
+            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'type', 'productModels', 'personId', 'userType'));
         } else {
 
-            return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type', 'personId'));
+            return view('user.orderDetails', compact('ServiceTypes', 'productModels', 'type', 'personId', 'userType'));
 
         }
     }
@@ -200,6 +202,7 @@ class PersonController extends Controller
     }
     public function storeOrder(Request $request)
     {
+
         $order = $this->Orders();
         $order_id = $order['id'];
         $datas = $request->all();
@@ -207,17 +210,15 @@ class PersonController extends Controller
         $site_details = $this->convertSiteDetails($datas, $order_id);
         $order_details = $this->convertOrderDetails($datas, $order_id);
         $billing_address = $this->convertBillingAddress($datas, $order_id);
-        $service_type = $this->orderServiceTypes($datas, $order_id);
-        $order_transaction = $this->orderTransaction($datas, $order_id);
+        $service_type = $this->orderServiceTypes($request->all(), $order_id);
+        $order_transaction = $this->orderTransaction($request->all(), $order_id);
         if (isset($datas->partyDetails) && $datas->partyDetails == 1) {
-            $check_mobile = PersonMobile::where('mobile_no', $datas->mobileNumber)->first();
+            $storePerson = $this->convertToPersonModel($datas, 3);
+            $Party_details = $this->partyDetails($storePerson, $order_id, 3);
+        } else if (isset($datas->engineerDetails) && $datas->engineerDetails == 2) {
+            $storePerson = $this->convertToPersonModel($datas, 4);
+            $Party_details = $this->partyDetails($storePerson, $order_id, 4);
 
-            if (!$check_mobile) {
-                $storePerson = $this->convertToPersonModel($datas);
-                $Party_details = $this->partyDetails($storePerson, 1);
-            } else {
-                dd('This Number already Exits');
-            }
         }
 
         if (isset($request->link) && $request->link == 'admin') {
@@ -234,13 +235,13 @@ class PersonController extends Controller
         $model->save();
         return $model;
     }
-    public function partyDetails($datas, $orderId = null)
+    public function partyDetails($datas, $orderId = null, $type = null)
     {
 
         $datas = (object) $datas;
         $model = new OrderPersons();
         $model->order_id = $orderId;
-        $model->person_type = 3;
+        $model->person_type = $type;
         $model->person_id = $datas->id;
         $model->save();
         return $model;
@@ -324,26 +325,41 @@ class PersonController extends Controller
     }
     public function checkPerson(Request $request)
     {
+
         $mobile = $request->mobile;
         $personId = $request->personId;
+        $userType = $request->userType;
+        if ($request->userType == 1) {
+            $type = 'agent';
+        } else if ($request->userType == 2) {
+            $type = 'party';
+        } else if ($request->userType == 3) {
+            $type = 'customer';
+        } else if ($request->userType == 4) {
+            $type = 'engineer';
+        }else{
+            $type = 0;
+        }
+
         if ($personId) {
             $ServiceTypes = $this->getServiceType();
             $productModels = $this->getProduct();
-            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId'));
+            return view('admin.order.orderDetails', compact('ServiceTypes', 'mobile', 'productModels', 'personId', 'userType', 'type'));
         }
     }
     public function addNewOrder(Request $request)
     {
-        $models = Person::select('persons.id', 'persons.name', 'person_mobiles.mobile_no', 'person_emails.email', 'organizations.organization_name')
+        $models = Person::select('persons.id', 'persons.name', 'persons.designation', 'person_types.type_id', 'person_mobiles.mobile_no', 'person_emails.email', 'organizations.organization_name')
             ->leftjoin('person_mobiles', 'person_mobiles.person_id', '=', 'persons.id')
+            ->leftjoin('person_types', 'person_types.person_id', '=', 'persons.id')
             ->leftjoin('person_emails', 'person_emails.person_id', '=', 'persons.id')
             ->leftjoin('organizations', 'organizations.person_id', '=', 'persons.id')
             ->get()->toArray();
+
         return view('admin.order.addOrder', compact('models'));
     }
     public function createAccount(Request $request)
     {
-// dd($request->all());
         $userType = $request->userConfirm;
         $mobile = $request->mobileNumber;
         $ServiceTypes = $this->getServiceType();
@@ -360,6 +376,39 @@ class PersonController extends Controller
             return ProductDetail::where('product_id', $request->id)->first();
         } else {
             return false;
+        }
+
+    }
+    public function checkMobileNumberForAgent(Request $request)
+    {
+        if ($request->number) {
+            $model = Person::select('persons.id')
+                ->leftjoin('person_mobiles', 'person_mobiles.person_id', '=', 'persons.id')
+                ->leftjoin('person_types', 'person_types.person_id', '=', 'persons.id')
+                ->where('person_types.type_id', 1)
+                ->where('person_mobiles.mobile_no', $request->number)
+                ->first();
+            if ($model) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    public function checkMobileNumberForParty(Request $request)
+    {
+        if ($request->number) {
+            $model = Person::select('persons.id')
+                ->leftjoin('person_mobiles', 'person_mobiles.person_id', '=', 'persons.id')
+                ->leftjoin('person_types', 'person_types.person_id', '=', 'persons.id')
+                ->where('person_types.type_id', 2)
+                ->where('person_mobiles.mobile_no', $request->number)
+                ->first();
+            if ($model) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }
