@@ -219,13 +219,17 @@ class PersonController extends Controller
         $service_type = $this->orderServiceTypes($request->all(), $order_id);
         $order_transaction = $this->orderTransaction($request->all(), $order_id);
         if (isset($datas->partyDetails) && $datas->partyDetails == 1) {
-            $storePerson = $this->convertToPersonModel($datas, 3);
-            $Party_details = $this->partyDetails($storePerson, $order_id, 3);
+            $order_status = $this->partyDetails($datas->personId, $order_id,1);
+            $storePerson = $this->convertToPersonModel($datas, 2);
+            $Party_details = $this->partyDetails($storePerson['id'], $order_id, 2);
         } else if (isset($datas->engineerDetails) && $datas->engineerDetails == 2) {
-            $storePerson = $this->convertToPersonModel($datas, 4);
-            $Party_details = $this->partyDetails($storePerson, $order_id, 4);
+            $order_status = $this->partyDetails($datas->personId, $order_id,2);
+            $storePerson = $this->convertToPersonModel($datas, 1);
+            $Party_details = $this->partyDetails($storePerson['id'], $order_id, 1);
+        } else{
+            $order_status = $this->partyDetails($datas->personId, $order_id);
         }
-            return redirect()->route('userOrderConfirm', ['id' => $order_id]);
+        return redirect()->route('userOrderConfirm', ['id' => $order_id]);
 
     }
     public function Orders()
@@ -244,14 +248,13 @@ class PersonController extends Controller
         $model->save();
         return $model;
     }
-    public function partyDetails($datas, $orderId = null, $type = null)
+    public function partyDetails($personId, $orderId = null, $type = null)
     {
 
-        $datas = (object) $datas;
         $model = new OrderPersons();
         $model->order_id = $orderId;
         $model->person_type = $type;
-        $model->person_id = $datas->id;
+        $model->person_id = $personId;
         $model->save();
         return $model;
     }
