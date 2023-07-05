@@ -279,6 +279,7 @@ class PersonController extends Controller
         $model->product_id = $datas->conGrade;
         $model->quantity = $datas->quantity;
         $model->remark = $datas->Remarks;
+        $model->created_by=$datas->personId;
         $model->save();
         return $model;
     }
