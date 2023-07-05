@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\OrderBillingAddress;
 use App\Models\OrderAccounting;
+use App\Models\OrderBillingAddress;
 use App\Models\OrderDetails;
 use App\Models\OrderPersons;
 use App\Models\orders;
 use App\Models\OrderServices;
+use App\Models\OrderSiteDetails;
 use App\Models\OrderStatus;
 use App\Models\OrderTransactions;
 use App\Models\Organization;
@@ -22,7 +23,6 @@ use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\ServiceDetails;
 use App\Models\ServiceType;
-use App\Models\OrderSiteDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -225,25 +225,21 @@ class PersonController extends Controller
             $storePerson = $this->convertToPersonModel($datas, 4);
             $Party_details = $this->partyDetails($storePerson, $order_id, 4);
         }
+            return redirect()->route('userOrderConfirm', ['id' => $order_id]);
 
-        if (isset($request->link) && $request->link == 'admin') {
-            return redirect('order/addNewOrder');
-        } else {
-            return redirect('/');
-        }
     }
     public function Orders()
     {
         $orderAccountingModel = OrderAccounting::first();
-        if($orderAccountingModel){
-           $orderAccountingModel->genNo =$orderAccountingModel->gen_no +1 ;
-           $orderAccountingModel->save();
+        if ($orderAccountingModel) {
+            $orderAccountingModel->genNo = $orderAccountingModel->gen_no + 1;
+            $orderAccountingModel->save();
         }
-        $genNo = ( $orderAccountingModel->genNo)? $orderAccountingModel->genNo:1;
-        $orderNo = "ABCD@". $genNo;
+        $genNo = isset($orderAccountingModel->genNo) ? $orderAccountingModel->genNo : 1;
+        $orderNo = "ABCD@" . $genNo;
 
         $model = new orders();
-        $model->order_id =  $orderNo;
+        $model->order_id = $orderNo;
         $model->status = 1;
         $model->save();
         return $model;
@@ -350,7 +346,6 @@ class PersonController extends Controller
         $total = $amount + $service;
 
         Log::info('OrderTransaction Function get net Total Amount ' . json_encode($total));
-
 
         $balance = $total - $datas['advance'];
         Log::info('OrderTransaction Function get balance Total Amount ' . json_encode($balance));

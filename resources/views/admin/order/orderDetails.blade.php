@@ -168,7 +168,7 @@
                                     <div class="col-md-6 mb-4">
                                         <select class="form-select select2 col-md-12 product_id" style="width:100%;"
                                             id="conGrade" name="conGrade" required aria-label="Select option">
-                                            <option selected disabled>Select an Product</option>
+                                            <option selected >Select an Product</option>
                                             @foreach ($productModels as $productModel)
                                                 <option value="{{ $productModel->id }}">{{ $productModel->product_name }}
                                                 </option>
