@@ -4,7 +4,7 @@
 
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark" >
+        <a href="{{url('dashboard')}}" class="nav-link link-dark" >
           <i class="fa fa-dashboard mx-2"></i>
           Dashboard
         </a>
@@ -53,7 +53,7 @@
         <li><a class="dropdown-item" href="#">Settings</a></li>
         <li><a class="dropdown-item" href="#">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a href = "{{url('logout')}}" class="dropdown-item" href="#">Sign out</a></li>
       </ul>
     </div>
   </div>

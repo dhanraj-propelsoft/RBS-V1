@@ -19,7 +19,7 @@
     </div>
     <div class="card  p-1 shadow-3 m-2 rounded-2" style="width:350px;border-left:6px solid #1a8de4">
         <h4 class="text-center text-primary ">Need User Confirmation</h4>
-        <h3 class="text-center text-primary " target_number="15">15</h3>
+        <h3 class="text-center text-primary " target_number="{{$userConfirmationCountings}}">{{$userConfirmationCountings}}</h3>
     </div>
 </div>
 <div class="p-2 mt-5">
