@@ -17,42 +17,42 @@
 
         <div class="row">
             <h5 class="col-md-6">Date & Time of Supply:</h5>
-            <p class="col-md-6" data-from="datetime">{{ $orderDetail['date_time_of_supply'] }}</p>
+            <p class="col-md-6" data-from="datetime">{{ $supplyDate }}</p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Site Address:</h5>
-            <p class="col-md-6" data-from="siteAddresses">{{ $orderDetail['site_street'] }},{{ $orderDetail['site_city'] }}
+            <p class="col-md-6" data-from="siteAddresses">{{ $siteAddress }}
             </p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Billing Address:</h5>
             <p class="col-md-6" data-from="billAddresses">
-                {{ $orderDetail['billing_street'] }},{{ $orderDetail['billing_city'] }}</p>
+                {{ $billingAddress}}</p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Concrete Grade:</h5>
-            <p class="col-md-6" data-from="conGrade">{{ $orderDetail['product_name'] }}</p>
+            <p class="col-md-6" data-from="conGrade">{{ $product}}</p>
         </div>
         <div class="row">
             <h5 class="col-md-6 ">Quantity in cubic meter:</h5>
-            <p class="col-md-6" data-from="quantity">{{ $orderDetail['quantity'] }}</p>
+            <p class="col-md-6" data-from="quantity">{{ $quantity }}</p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Service:</h5>
-            <p class="col-md-6" data-from="service">{{ $orderDetail['service_name'] }}</p>
+            <p class="col-md-6" data-from="service">{{ $service }}</p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Net Amount:</h5>
-            <p class="col-md-6" data-from="netAmount">{{ $orderDetail['total_amount'] ? $orderDetail['total_amount'] : 0 }}
+            <p class="col-md-6" data-from="netAmount">{{ ($netAmount) ? $netAmount : 0 }}
             </p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Advance:</h5>
-            <p class="col-md-6" data-from="advance">{{ $orderDetail['advance'] ? $orderDetail['advance'] : 0 }}</p>
+            <p class="col-md-6" data-from="advance">{{ ($advance) ? $advance : 0 }}</p>
         </div>
         <div class="row">
             <h5 class="col-md-6">Remark:</h5>
-            <p class="col-md-6" data-from="remarks">{{ $orderDetail['remark'] }}</p>
+            <p class="col-md-6" data-from="remarks">{{ ($remark)? $remark :'Null'  }}</p>
         </div>
         <a href="{{ route('userOrderConfirmStatus', ['id' => $id]) }}"
             class="btn btn-primary col-12 col-md-6 col-lg-6 m-auto">Order Confirm</a>

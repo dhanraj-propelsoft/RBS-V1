@@ -21,4 +21,13 @@ class Order extends Model
     {
         return $this->hasOne(OrderSiteDetails::class, 'order_id', 'id');
     }
+
+    public function OrderService()
+    {
+        return $this->hasOne(OrderServices::class, 'order_id', 'id');
+    }
+    public function OrderTransaction()
+    {
+        return $this->hasOne(OrderTransactions::class, 'order_id', 'id');
+    }
 }

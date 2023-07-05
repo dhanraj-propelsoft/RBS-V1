@@ -43,7 +43,8 @@ Route::get('/exist', function () {
     return view('existingUser');
 });
 
-Route::get('userOrderConfirm/{id}', [OrderController::class, 'userOrderConfirm']);
+Route::get('userOrderConfirm/{id}', [OrderController::class, 'userOrderConfirm'])->name('userOrderConfirm');
+Route::get('userOrderConfirmStatus/{id}', [OrderController::class, 'userOrderConfirmStatus'])->name('userOrderConfirmStatus');
 
 Route::get('user-registration', [UserController::class, 'index'])->name('user-registration');
 
@@ -65,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/createAccount', [PersonController::class, 'createAccount'])->name('order.createAccount');
         Route::view('/personProfile', 'admin/order/personProfile');
         Route::view('/orderDetails', 'admin/order/orderDetails')->name('order.orderDetails');
-       
+
 
     });
 

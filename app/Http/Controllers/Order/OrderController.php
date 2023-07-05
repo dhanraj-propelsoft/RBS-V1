@@ -10,19 +10,69 @@ class OrderController extends Controller
 {
     public function userOrderConfirm($id)
     {
+        $orderData = Order::with('orderDetail', 'orderDetail.product', 'OrderBillingAddress', 'OrderSiteAddress', 'OrderService', 'OrderService.service','OrderTransaction')
 
-        $orderDetail = Order::with('orderDetail', 'orderDetail.product', 'OrderBillingAddress', 'OrderSiteAddress')
-            ->select('order_details.remark', 'order_details.quantity', 'order_details.date_time_of_supply', 'order_billing_addresses.street as billing_street', 'order_billing_addresses.city as billing_city', 'order_site_details.street as site_street', 'order_site_details.city as site_city', 'products.product_name', 'service_types.service_name', 'order_transactions.total_amount', 'order_transactions.advance')
-            ->leftjoin('order_details', 'order_details.order_id', '=', 'orders.id')
-            ->leftjoin('order_services', 'order_services.order_id', '=', 'orders.id')
-            ->leftjoin('order_billing_addresses', 'order_billing_addresses.order_id', '=', 'orders.id')
-            ->leftjoin('order_site_details', 'order_site_details.order_id', '=', 'orders.id')
-            ->leftJoin('products', 'order_details.product_id', '=', 'products.id')
-            ->leftJoin('order_transactions', 'order_transactions.order_id', '=', 'orders.id')
-            ->leftJoin('service_types', 'order_services.service_id', '=', 'service_types.id')
             ->where('orders.id', $id)
             ->first();
-        return view('user/userOrderConfirm', compact('orderDetail', 'id'));
+        $supplyDate = "";
+        $siteAddress = "";
+        $product = "";
+        $service = "";
+        $billingAddress = "";
+        $quantity = "";
+        $remark = "";
+        $netAmount="";
+        $advance="";
+        $orderDetail = $orderData['orderDetail'];
+        $orderSiteAddress = $orderData['OrderSiteAddress'];
+        $orderBillingAdress = $orderData['OrderBillingAddress'];
+        $orderService = $orderData['OrderService'];
+        $orderTransaction=$orderData['OrderTransaction'];
+        if($orderTransaction){
+            $netAmount=$orderTransaction->total_amount;
+            $advance=$orderTransaction->advance;
+        }
+        if ($orderService) {
+            $serviceModel = $orderService->service;
+            $service = $serviceModel->service_name;
+        }
+        if ($orderDetail) {
+            $supplyDate = $orderDetail->date_time_of_supply;
+            $quantity = $orderDetail->quantity;
+            $remark = $orderDetail->remark;
+            $productModel = $orderDetail->product;
+            if ($productModel) {
+                $product = $productModel->product_name;
+            }
+        }
+        if ($orderSiteAddress) {
+            $site_name = ($orderSiteAddress->site_name) ? $orderSiteAddress->site_name . ',' : '';
+            $plot_number = ($orderSiteAddress->plot_number) ? $orderSiteAddress->plot_number . ',' : '';
+            $street = ($orderSiteAddress->street) ? $orderSiteAddress->street . ',' : '';
+            $city = ($orderSiteAddress->city) ? $orderSiteAddress->city : '';
+            $siteAddress = $site_name . $plot_number . $street . $city;
+        }
+        if ($orderBillingAdress) {
+            $billing_name = ($orderBillingAdress->billing_name) ? $orderBillingAdress->billing_name . ',' : '';
+            $plot_number = ($orderBillingAdress->plot_number) ? $orderBillingAdress->plot_number . ',' : '';
+            $street = ($orderBillingAdress->street) ? $orderBillingAdress->street . ',' : '';
+            $city = ($orderBillingAdress->city) ? $orderBillingAdress->city : '';
+            $billingAddress = $billing_name . $plot_number . $street . $city;
+        }
+
+        $datas = compact(
+            'supplyDate',
+            'siteAddress',
+            'product',
+            'service',
+            'billingAddress',
+            'quantity',
+            'remark',
+            'netAmount',
+            'advance'
+        );
+
+        return view('user/userOrderConfirm')->with($datas)->with('id', $id);
     }
     public function userOrderConfirmStatus($id)
     {

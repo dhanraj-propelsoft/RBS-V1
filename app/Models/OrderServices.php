@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class OrderServices extends Model
 {
     use HasFactory;
+    public function service()
+    {
+        return $this->hasOne(ServiceType::class, 'id', 'service_id');
+    }
 }
