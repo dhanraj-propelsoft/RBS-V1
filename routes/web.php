@@ -85,8 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('overall')->group(function () {
         Route::view('/overallList', 'admin/overall/overallList');
     });
-    Route::view('/dashboard', 'admin/dashboard');
-
+   
 });
 
 Route::post('getPriceByProduct_id', [PersonController::class, 'getPriceByProduct_id'])->name('getPriceByProduct_id');
