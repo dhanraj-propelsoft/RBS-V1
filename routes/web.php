@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\DashbordController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\ServiceType\ServiceTypeController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\User\PersonController;
 use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +42,9 @@ Route::get('/order', function () {
 Route::get('/exist', function () {
     return view('existingUser');
 });
+
+Route::get('userOrderConfirm/{id}', [OrderController::class, 'userOrderConfirm']);
+
 Route::get('user-registration', [UserController::class, 'index'])->name('user-registration');
 
 Route::post('user-store', [UserController::class, 'userPostRegistration'])->name('user-store');
@@ -60,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/createAccount', [PersonController::class, 'createAccount'])->name('order.createAccount');
         Route::view('/personProfile', 'admin/order/personProfile');
         Route::view('/orderDetails', 'admin/order/orderDetails')->name('order.orderDetails');
-        Route::view('/userOrderConfirm', 'admin/order/userOrderConfirm');
+       
 
     });
 

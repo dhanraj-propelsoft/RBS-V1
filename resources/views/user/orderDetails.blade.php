@@ -11,7 +11,7 @@
                             @csrf
                             <div class="form-wizard-header">
                                 <button type="button" class="btn-close float-end" aria-label="Close"></button>
-                                <h5 class="text-center wizard_name">Site Address</h5>
+                                <h5 class="text-center wizard_name">Site Address1</h5>
 
                                 <ul class="list-unstyled form-wizard-steps clearfix d-flex justify-content-center">
                                     <li class="active"><span>1</span></li>

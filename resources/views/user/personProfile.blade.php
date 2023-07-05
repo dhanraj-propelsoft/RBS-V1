@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('layout.app')
 @section('content')
 
 <div class="d-flex justify-content-center align-items-start mt-5 shadow-1  main-container">
@@ -15,7 +15,7 @@
       <form name="form" method="post" action="{{url('personStore')}}">
         @csrf
         <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
-        <input type="hidden" name="link"  value="admin" />
+        <!-- <input type="hidden" name="link"  value="admin" /> -->
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row">
           <div class="col-md-6 mb-4">
