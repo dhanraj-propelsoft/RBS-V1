@@ -67,7 +67,7 @@ class DashbordController extends Controller
             $response = ['id'=>$id,'customerData'=>$customerDetail,'siteAddress'=>$siteAddress,'status'=>$status,'orderBy'=>$orderBy];
            array_push($modelDatas,$response);
         }
-        dd($modelDatas);
+       // dd($modelDatas);
         return view('admin.dashboard', compact('canceledCountings','userConfirmationCountings', 'adminConfirmationCountings', 'confirmedCountings', 'deliveredCountings'));
     }
 }
