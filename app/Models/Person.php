@@ -9,4 +9,9 @@ class Person extends Model
 {
     use HasFactory;
     protected $table = 'persons';
+
+    public function personMobile()
+    {
+        return $this->hasOne(PersonMobile::class, 'person_id', 'id');
+    }
 }

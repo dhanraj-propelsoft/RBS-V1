@@ -12,4 +12,9 @@ class OrderDetails extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
+    public function creator()
+    {
+        return $this->hasOne(Person::class, 'id', 'created_by');
+    }
 }

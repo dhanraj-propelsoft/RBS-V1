@@ -3,19 +3,19 @@
 <div class="d-flex flex-wrap justify-content-center p-1">
     <div class="card  p-1 shadow-3 m-2 rounded-2" style="width:350px;border-left:6px solid #14a44d">
         <h4 class="text-center text-success " > Delivered</h4>
-        <h3 class="text-center text-success " target_number="350">350</h3>
+        <h3 class="text-center text-success " target_number="{{$deliveredCountings}}">{{$deliveredCountings}}</h3>
     </div>
     <div class="card  p-1 shadow-3 m-2 rounded-2" style="width:350px;border-left:6px solid #dc4c64">
         <h4 class="text-center text-danger " >Canceled</h4>
-        <h3 class="text-center text-danger " target_number="50">50</h3>
+        <h3 class="text-center text-danger " target_number="{{$canceledCountings}}">{{$canceledCountings}}</h3>
     </div>
     <div class="card  p-1 shadow-3 m-2 rounded-2" style="width:350px;border-left:6px solid #e4a11b">
         <h4 class="text-center text-warning " >Confirmed</h4>
-        <h3 class="text-center text-warning " target_number="30">30</h3>
+        <h3 class="text-center text-warning " target_number="{{$confirmedCountings}}">{{$confirmedCountings}}</h3>
     </div>
     <div class="card  p-1 shadow-3 m-2 rounded-2" style="width:350px;border-left:6px solid #6500fd">
         <h4 class="text-center text-violet ">Need Admin Confirmation</h4>
-        <h3 class="text-center text-violet " target_number="35">35</h3>
+        <h3 class="text-center text-violet " target_number="{{$adminConfirmationCountings}}">{{$adminConfirmationCountings}}</h3>
     </div>
     <div class="card  p-1 shadow-3 m-2 rounded-2" style="width:350px;border-left:6px solid #1a8de4">
         <h4 class="text-center text-primary ">Need User Confirmation</h4>

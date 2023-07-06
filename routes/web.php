@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
+    
     return view('user/home');
 });
 Route::get('/excel', function () {
@@ -60,10 +61,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
     Route::prefix('order')->group(function () {
-        Route::view('/orderRequest', 'admin/order/orderRequest');
+        Route::get('/orderRequest', [OrderController::class, 'orderRequest']);
         Route::get('/addNewOrder', [PersonController::class, 'addNewOrder'])->name('order.addNewOrder');
         Route::post('/checkPerson', [PersonController::class, 'checkPerson'])->name('order.checkPerson');
         Route::post('/createAccount', [PersonController::class, 'createAccount'])->name('order.createAccount');
+
         Route::view('/personProfile', 'admin/order/personProfile');
         Route::view('/orderDetails', 'admin/order/orderDetails')->name('order.orderDetails');
 

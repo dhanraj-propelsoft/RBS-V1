@@ -12,7 +12,7 @@
       </select>
     </label>
   </div>
-  <div  class="date_filters mx-2">
+  <div class="date_filters mx-2">
     <div class="input-group date form_date col-md-8" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
       <span class="input-group-addon btn btn-floating shadow-0 border border-1 border-end-0 h-auto rounded-start border-secondary">
         <span class="fa fa-calendar"></span>
@@ -22,7 +22,7 @@
     </div>
     <input type="hidden" id="dtp_input2" value="" />
   </div>
-  <div  class="date_filters mx-2">
+  <div class="date_filters mx-2">
     <div class="input-group date form_date col-md-8" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
       <span class="input-group-addon btn btn-floating shadow-0 border border-1 border-end-0 h-auto rounded-start border-secondary">
         <span class="fa fa-calendar"></span>
@@ -32,17 +32,17 @@
     </div>
     <input type="hidden" id="dtp_input2" value="" />
   </div>
-  <div class="searchByColumn" >
+  <div class="searchByColumn">
     <label class="input-group">
-      <select  name="" id="" class="form-control select2" style="width:200px">
+      <select name="" id="" class="form-control select2" style="width:200px">
         <option selected disabled> Concrete Grade... </option>
         <option value="1">Grade 3</option>
         <option value="2">Grade 4</option>
       </select>
     </label>
   </div>
-  <div class="searchByColumn" >
-    <select  name="" id="" class="form-control select2" style="width:150px">
+  <div class="searchByColumn">
+    <select name="" id="" class="form-control select2" style="width:150px">
       <option selected disabled> Status... </option>
       <option value="1">Pending</option>
       <option value="2">Confirmed</option>
@@ -55,272 +55,41 @@
   </div>
 </form>
 <table id="orderTable" class="display">
-    <thead >
-        <tr>
-            <th>#</th>
-            <th>Customer Name & Phone Number</th>
-            <th>Site Address</th>
-            <th>Status</th>
-            <th>Order By</th>
-            <th>Actions</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
+  <thead>
     <tr>
-      <td>1</td>
-      <td class="search-concrete">UUnhlV0fP9</td>
-      <td>Product 1</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>01/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
+      <th>#</th>
+      <th>Customer Name & Phone Number</th>
+      <th>Site Address</th>
+      <th>Status</th>
+      <th>Order By</th>
+      <th>Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($modelDatas as $modelData)
+    <tr>
+      <td>{{$loop->iteration}}</td>
+      <td class="search-concrete">{{$modelData['customerData']}}</td>
+      <td>{{$modelData['siteAddress']}}</td>
+      <td><span class="badge rounded-pill badge-warning">{{$modelData['status']}}</span></td>
+      <td>{{$modelData['orderBy']}}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
+          <i class="fa fa-eye"></i>
+        </button>
+        <button class="btn btn-success btn-sm" onclick="editRow(this)">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
+          <i class="fa fa-trash-o"></i>
+        </button>
+      </td>
 
 
-  </tr>
-
-          <tr>
-      <td>2</td>
-      <td class="search-concrete">qWzTlAhnIc</td>
-      <td>Product 2</td>
-      <td><span class="badge rounded-pill badge-success">Confirm</span></td>
-      <td>02/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>3</td>
-      <td class="search-concrete">XW1NA4qaGW</td>
-      <td>Product 3</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>03/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>4</td>
-      <td class="search-concrete">A5Ggsx6ErN</td>
-      <td>Product 4</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>04/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>5</td>
-      <td class="search-concrete">vzYwAZJHWn</td>
-      <td>Product 5</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>05/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>6</td>
-      <td class="search-concrete">XBRF5nAYVI</td>
-      <td>Product 6</td>
-      <td><span class="badge rounded-pill badge-success">Confirm</span></td>
-      <td>06/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>7</td>
-      <td class="search-concrete">q3h7UzNmuf</td>
-      <td>Product 7</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>07/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>8</td>
-      <td class="search-concrete">LBFi8xJ1ni</td>
-      <td>Product 8</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>08/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>9</td>
-      <td class="search-concrete">xj3ephYhXU</td>
-      <td>Product 9</td>
-      <td><span class="badge rounded-pill badge-success">Confirm</span></td>
-      <td>09/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>10</td>
-      <td class="search-concrete">AjA5cTZyRu</td>
-      <td>Product 10</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>10/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>11</td>
-      <td class="search-concrete">a8Thw1XsRm</td>
-      <td>Product 11</td>
-      <td><span class="badge rounded-pill badge-success">Confirm</span></td>
-      <td>11/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-          <tr>
-      <td>12</td>
-      <td class="search-concrete">5vUPHyKkfy</td>
-      <td>Product 12</td>
-      <td><span class="badge rounded-pill badge-warning">Pending</span></td>
-      <td>12/05/2023</td>
-              <td>
-      <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-        <i class="fa fa-eye"></i>
-      </button>
-      <button class="btn btn-success btn-sm" onclick="editRow(this)">
-        <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </td>
-
-
-  </tr>
-
-      </tbody>
+    </tr>
+    @endforeach
+  </tbody>
 
 </table>
 <!-- Modal -->
@@ -329,10 +98,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-primary" id="exampleModalLabel">Customer | <i class="fa fa-phone"></i> <a href="tel:7098432343">7098432343</a></h5>
-       <div class="d-flex">
-        <button class="btn btn-success mx-2">Edit</button>
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-       </div>
+        <div class="d-flex">
+          <button class="btn btn-success mx-2">Edit</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        </div>
 
       </div>
       <div class="modal-body">
@@ -385,7 +154,7 @@
 
 
         <div class="row">
-          <h5 class="col-md-6">Site Name &  Address:</h5>
+          <h5 class="col-md-6">Site Name & Address:</h5>
           <p class="col-md-6" data-from="siteAddresses"></p>
         </div>
         <div class="row">
@@ -410,13 +179,7 @@
       </div>
       <div class="modal-footer">
         <div class="dropdown">
-          <button
-            class="btn btn-warning text-capitalize dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-mdb-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <button class="btn btn-warning text-capitalize dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
             Pending
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -427,41 +190,39 @@
           </ul>
         </div>
         <button type="button" class="btn btn-info text-capitalize">Copy URL</button>
-        <button type="button" class="btn text-white text-capitalize"  style="background-color: #ac2bac;">Send SMS</button>
+        <button type="button" class="btn text-white text-capitalize" style="background-color: #ac2bac;">Send SMS</button>
 
       </div>
     </div>
   </div>
 </div>
-    <script>
+<script>
+  $(document).ready(function() {
 
- $(document).ready(function() {
+    var table = $('#orderTable').DataTable({
+      searching: false,
+      "scrollY": "calc(100vh - 230px)",
+      "scrollX": true,
+      responsive: true,
+      lengthChange: false,
 
-  var table = $('#orderTable').DataTable({
-  searching: false,
-  "scrollY": "calc(100vh - 230px)",
-  "scrollX":true,
-  responsive: true,
-  lengthChange: false,
-
-});
+    });
 
 
-$('#setLengthButton').on('change', function() {
+    $('#setLengthButton').on('change', function() {
       table.page.len($(this).val()).draw();
     });
 
 
 
 
-$(document).on('click' , ".remove-date",function(){
-  // alert("ok");
-  $(this).prev().val("");
-});
+    $(document).on('click', ".remove-date", function() {
+      // alert("ok");
+      $(this).prev().val("");
+    });
 
-});
+  });
 
-$(".navbar .container-fluid").append("<a href='{{ route('order.addNewOrder') }}' class='btn btn-primary btn-sm'>Add Order</a>");
-
-    </script>
+  $(".navbar .container-fluid").append("<a href='{{ route('order.addNewOrder') }}' class='btn btn-primary btn-sm'>Add Order</a>");
+</script>
 @endsection
