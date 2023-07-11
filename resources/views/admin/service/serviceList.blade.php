@@ -54,7 +54,18 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#serviceTable').DataTable();
+            var table = $('#serviceTable').DataTable({
+                language: {
+                    lengthMenu: '_MENU_'
+                },
+                initComplete: function(settings, json) {
+                    $('.dataTables_length select').select2({
+                        dropdownCssClass: 'select2',
+                        minimumResultsForSearch: Infinity
+                    });
+                    // $("select2").trigger("change");
+                }
+            });
 
 
 

@@ -4,7 +4,7 @@
 <form class="d-flex justify-content-between form-for-filter" onsubmit="return false">
   <div class="dataTables_length " id="orderTable_length">
     <label>
-      <select name="orderTable_length" id="setLengthButton" aria-controls="orderTable" class="form-control select2" style="width:100px;">
+      <select name="orderTable_length" id="setLengthButton" aria-controls="orderTable" class="form-control select2" style="width:60px;">
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>

@@ -24,21 +24,16 @@
                     <td>{{ $data['special_price'] }}</td>
                     <td>
                         <div class="dropdown">
-                            <span
-                              class="badge badge-success dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton"
-                              data-mdb-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              Active
+                            <span class="badge badge-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                Active
                             </span>
                             <ul class="status-change dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <li><a class="dropdown-item" href="#" dropdown-class="badge-success">Active</a></li>
-                              <li><a class="dropdown-item" href="#" dropdown-class="badge-danger">In Active</a></li>
-                             
+                                <li><a class="dropdown-item" href="#" dropdown-class="badge-success">Active</a></li>
+                                <li><a class="dropdown-item" href="#" dropdown-class="badge-danger">In Active</a></li>
+
                             </ul>
-                          </div>
+                        </div>
                     </td>
                     <td>
                         <!-- Action buttons here -->
@@ -55,7 +50,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#productTable').DataTable();
+            var table = $('#productTable').DataTable({
+                language: {
+                    lengthMenu: '_MENU_'
+                },
+                initComplete: function(settings, json) {
+                    $('.dataTables_length select').select2({
+                        dropdownCssClass: 'select2',
+                        minimumResultsForSearch: Infinity
+                    });
+                    // $("select2").trigger("change");
+                }
+            });
+
             $(document).on('click', ".remove-date", function() {
                 // alert("ok");
                 $(this).prev().val("");

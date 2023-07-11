@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-between">
   <div class="dataTables_length" id="orderTable_length">
     <label>
-      <select name="orderTable_length" id="setLengthButton" aria-controls="orderTable" class="">
+      <select name="orderTable_length" id="setLengthButton" aria-controls="orderTable" class="select2" style="width:60px;">
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
@@ -53,7 +53,7 @@
             <th>Site Address</th>
             <th>Status</th>
             <th>Order By</th>
-            <th>Actions</th>
+        
            
         </tr>
     </thead>
@@ -171,8 +171,11 @@
  $(document).ready(function() {
  
   var table = $('#orderTable').DataTable({
-  searching: false,
-  lengthChange: false,
+    searching: false,
+      "scrollY": "calc(100vh - 230px)",
+      "scrollX": true,
+      responsive: true,
+      lengthChange: false,
   initComplete: function () {
     $('#setLengthButton').on('change', function() {
       table.page.len($(this).val()).draw();
