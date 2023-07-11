@@ -6,7 +6,7 @@
                 <th>#</th>
                 <th>Date</th>
                 <th>Service Name</th>
-                <th>Price</th>
+                <th>MRP</th>
                 <th>Special Price</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -20,10 +20,29 @@
                     <td>{{ $data['service_name'] }}</td>
                     <td>{{ $data['mrp'] }}</td>
                     <td>{{ $data['special_price'] }}</td>
-                    <td><button type="button" class="btn btn-sm btn-success">Active</button></td>
-                    <td><a href="{{ route('ServiceType.edit', $data['id']) }}"><button type="button" class="btn btn-sm btn-primary mx-2"><i class="fa fa-pencil"></i></button>
-                      </a><button
-                            type="button" onclick="confirmDelete('{{ $data['id'] }}')" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button></td>
+                    <td>
+
+                        <div class="dropdown">
+                            <span
+                              class="badge badge-success dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-mdb-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Active
+                            </span>
+                            <ul class="status-change dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" href="#" dropdown-class="badge-success">Active</a></li>
+                              <li><a class="dropdown-item" href="#" dropdown-class="badge-danger">In Active</a></li>
+                             
+                            </ul>
+                          </div>
+                    </td>
+                    <td><a href="{{ route('ServiceType.edit', $data['id']) }}"><button type="button"
+                                class="btn btn-sm btn-primary mx-2"><i class="fa fa-pencil"></i></button>
+                        </a><button type="button" onclick="confirmDelete('{{ $data['id'] }}')"
+                            class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button></td>
                 </tr>
             @endforeach
         </tbody>
@@ -49,6 +68,7 @@
             });
 
         });
+
         function confirmDelete(id) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -69,7 +89,7 @@
                             id: id,
                         },
                         success: function(data) {
-                                    location.reload()
+                            location.reload();
 
                         },
                         error: function(err) {

@@ -8,8 +8,8 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-outline mb-3 ">
-                            <input type="text" class="form-control" id="serviceName" name="serviceName" placeholder="Service Name">
-                            <label class="form-label" for="serviceName">Service Name</label>
+                            <input type="text" class="form-control" id="serviceName" name="serviceName" placeholder="Service Name" required>
+                            <label class="form-label" for="serviceName">Service Name <sup class="text-danger">*</sup></label>
                         </div>
                     </div>
                     <div class="col-6">
@@ -36,21 +36,21 @@
                             <td>
                                 <div class="form-outline">
                                     <input type="date" class="form-control" name="effectiveDate[]" id="effectiveDate"
-                                        placeholder="Effective Date">
-                                    <label class="form-label"for="effectiveDate">Effective Date</label>
+                                        placeholder="Effective Date" required>
+                                    <label class="form-label" for="effectiveDate" >Effective Date  <sup class="text-danger">*</sup></label>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline">
-                                    <input type="number" class="form-control" id="mrp" name="mrp[]" placeholder="MRP">
-                                    <label class="form-label"for="mrp">MRP</label>
+                                    <input type="number" class="form-control" id="mrp" name="mrp[]" placeholder="MRP" required>
+                                    <label class="form-label" for="mrp">MRP  <sup class="text-danger">*</sup></label>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline">
                                     <input type="number" class="form-control" name="specialPrice[]" id="specialPrice"
-                                        placeholder="Special Price">
-                                    <label class="form-label"for="specialPrice">Special Price</label>
+                                        placeholder="Special Price" required>
+                                    <label class="form-label" for="specialPrice">Special Price  <sup class="text-danger">*</sup></label>
                                 </div>
                             </td>
                         </tr>

@@ -6,8 +6,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Date</th>
                 <th scope="col">Product Name</th>
-                <th scope="col">Rate / m</th>
-                <th scope="col">MRP</th>
+                <th scope="col">MRP / m <sup>3</sup></th>
                 <th scope="col">Special Price</th>
                 <th scope="col">Status</th>
                 <th scope="col">Actions</th>
@@ -20,10 +19,27 @@
                     <td> {{ $loop->iteration }}</td>
                     <td>{{ $data['eff_date'] }}</td>
                     <td>{{ $data['product_name'] }}</td>
-                    <td>{{ $data['rate'] }}</td>
+                    {{-- <td>{{ $data['rate'] }}</td> --}}
                     <td>{{ $data['mrp'] }}</td>
                     <td>{{ $data['special_price'] }}</td>
-                    <td>Active</td>
+                    <td>
+                        <div class="dropdown">
+                            <span
+                              class="badge badge-success dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-mdb-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Active
+                            </span>
+                            <ul class="status-change dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" href="#" dropdown-class="badge-success">Active</a></li>
+                              <li><a class="dropdown-item" href="#" dropdown-class="badge-danger">In Active</a></li>
+                             
+                            </ul>
+                          </div>
+                    </td>
                     <td>
                         <!-- Action buttons here -->
                         <a href="{{ route('product.edit', $data['id']) }}"><button class="btn btn-sm btn-primary"><i
@@ -51,7 +67,7 @@
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'This action cannot be undone.',
-                icon: 'warning',
+                icon: 'orange',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',

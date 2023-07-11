@@ -9,7 +9,7 @@
             <label class="form-label" for="mobileNumberInput">Mobile Number</label>
         </div>
 
-        <button type="button" class="btn btn-primary col-3 mx-2 addNew">Add New Order</button>
+        <button type="button" class="btn btn-primary col-3 mx-2 addNew">Add New </button>
         <!-- Modal -->
         <div class="modal" id="myModal" tabindex="-1" role="dialog" data-mdb-backdrop="static"
             data-mdb-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,40 +51,42 @@
             </div>
         </div>
     </form>
-    <table id="numberTable" class="table table-border table-sm ">
-        <thead class="bg-primary text-white">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Organization</th>
-                <th>Designation</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Duplicate rows -->
-            @foreach ($models as $model)
+    <div class="numberTableContainer">
+        <table id="numberTable" class="table table-border  table-sm ">
+            <thead class="bg-primary text-white">
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $model['name'] }}</td>
-                    <td>{{ $model['mobile_no'] }}</td>
-                    <td>{{ $model['email'] }}</td>
-                    @if ($model['organization_name'])
-                        <td>{{ $model['organization_name'] }}</td>
-                    @else
-                        <td>Null</td>
-                    @endif
-                    <td>Manager</td>
-                    <td style="display: none">{{ $model['id'] }}</td>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Organization</th>
+                    <th>Designation</th>
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                <!-- Duplicate rows -->
+                @foreach ($models as $model)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $model['name'] }}</td>
+                        <td>{{ $model['mobile_no'] }}</td>
+                        <td>{{ $model['email'] }}</td>
+                        @if ($model['organization_name'])
+                            <td>{{ $model['organization_name'] }}</td>
+                        @else
+                            <td>Null</td>
+                        @endif
+                        <td>Manager</td>
+                        <td style="display: none">{{ $model['id'] }}</td>
+                    </tr>
+                @endforeach
 
-        </tbody>
-    </table>
-    <div class="d-flex justify-content-end">
-        <button type="reset" class="btn btn-secondary reset-btn">Reset</button>
-        <button type="button" class="btn btn-primary mx-4 next-btn">Next</button>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <button type="reset" class="btn btn-secondary reset-btn">Reset</button>
+            <button type="button" class="btn btn-primary mx-4 next-btn">Next</button>
+        </div>
     </div>
     <form id="mobileform" action="{{ route('order.checkPerson') }}" method="post">
         @csrf
@@ -105,36 +107,47 @@
             filterTable();
             // Function to filter the table based on the mobile number input
             function filterTable() {
-                // Get the value of the input
-                var filter = input.val().toLowerCase();
+                if (input.val().toLowerCase().length >= 3) {
+                    $(".numberTableContainer").show();
+                    // Get the value of the input
+                    var filter = input.val().toLowerCase();
 
-                // Get all the rows of the table body
-                var rows = $("#numberTable tbody tr");
+                    // Get all the rows of the table body
+                    var rows = $("#numberTable tbody tr");
 
-                // Loop through each row
-                rows.each(function() {
-                    var phoneNumber = $(this).find("td:eq(2)").text();
+                    // Loop through each row
+                    rows.each(function() {
+                        var phoneNumber = $(this).find("td:eq(2)").text();
 
-                    // Check if the phone number matches the filter
-                    if (phoneNumber.toLowerCase().indexOf(filter) > -1) {
-                        $(this).show(); // Show the row
+                        // Check if the phone number matches the filter
+                        if (phoneNumber.toLowerCase().indexOf(filter) > -1) {
+                            $(this).show(); // Show the row
+
+                        } else {
+                            $(this).hide(); // Hide the row
+                        }
+                    });
+
+                    // Check if there are any visible rows
+                    var visibleRows = $("#numberTable tbody tr:visible");
+                    var addNewBtn = $(".addNew");
+
+                    // Enable or disable the "Add New Order" button based on the number of visible rows
+                    if (visibleRows.length > 0) {
+                        addNewBtn.prop("disabled", true);
+                        $(".next-btn").prop("disabled", false);
+                        $(".numberTableContainer").show();
                     } else {
-                        $(this).hide(); // Hide the row
+                        addNewBtn.prop("disabled", false);
+                        $(".next-btn").prop("disabled", true);
+                        $(".numberTableContainer").hide();
                     }
-                });
 
-                // Check if there are any visible rows
-                var visibleRows = $("#numberTable tbody tr:visible");
-                var addNewBtn = $(".addNew");
-
-                // Enable or disable the "Add New Order" button based on the number of visible rows
-                if (visibleRows.length > 0) {
-                    addNewBtn.prop("disabled", true);
-                    $(".next-btn").prop("disabled", false);
                 } else {
-                    addNewBtn.prop("disabled", false);
-                    $(".next-btn").prop("disabled", true);
+                    $(".numberTableContainer").hide();
                 }
+
+
             }
 
             /* Modal Open */
@@ -172,10 +185,10 @@
             });
             $('#numberTable tbody tr').click(function() {
                 var mobileNumber = $(this).find("td:eq(2)").text();
-                var personId =$(this).find("td:eq(6)").text();
-                         $('#mobiles').val(mobileNumber);
-                         $('#personId').val(personId);
-                        $('#mobileform').submit();
+                var personId = $(this).find("td:eq(6)").text();
+                $('#mobiles').val(mobileNumber);
+                $('#personId').val(personId);
+                $('#mobileform').submit();
             });
         });
     </script>

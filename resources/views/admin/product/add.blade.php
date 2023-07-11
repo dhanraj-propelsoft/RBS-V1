@@ -9,13 +9,13 @@
                     <div class="col-6">
                         <div class="form-outline mb-3 ">
                             <input type="text" class="form-control" name="productName" id="productName"
-                                placeholder="Product Name">
-                            <label class="form-label" for="productName">Product Name</label>
+                                placeholder="Product Name" required>
+                            <label class="form-label" for="productName">Product Name <sup class="text-danger">*</sup></label>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-outline mb-3 ">
-                            <input type="number" class="form-control" name="units" id="units" placeholder="Units">
+                            <input type="text" value="m³" class="form-control" name="units" id="units" placeholder="Units" readonly >
                             <label class="form-label" for="units">Units</label>
                         </div>
                     </div>
@@ -31,13 +31,7 @@
                         </div>
 
                     </div>
-                    <div class="col-6">
-                        <div class="form-outline mb-3">
-                            <input type="number" class="form-control" name="rate" id="rate" placeholder="Rate">
-                            <label class="form-label" for="rate">Rate / m<sup>3</sup></label>
-                        </div>
-                    </div>
-                </div>
+               
 
 
                 <table class="table table-bordered mt-4" id="priceInfo">
@@ -53,22 +47,22 @@
                             <td>
                                 <div class="form-outline">
                                     <input type="date" class="form-control" name="effectiveDate[]" id="effectiveDate"
-                                        placeholder="Effective Date">
-                                    <label class="form-label"for="effectiveDate">Effective Date</label>
+                                        placeholder="Effective Date" required>
+                                    <label class="form-label"for="effectiveDate">Effective Date <sup class="text-danger">*</sup></label>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline">
                                     <input type="number" class="form-control" name="mrp[]" id="mrp"
-                                        placeholder="MRP">
-                                    <label class="form-label"for="mrp">MRP</label>
+                                        placeholder="MRP" required>
+                                    <label class="form-label"for="mrp">MRP <sup class="text-danger">*</sup></label>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline">
                                     <input type="number" class="form-control" name="specialPrice[]" id="specialPrice"
-                                        placeholder="Special Price">
-                                    <label class="form-label"for="specialPrice">Special Price</label>
+                                        placeholder="Special Price" required>
+                                    <label class="form-label"for="specialPrice">Special Price <sup class="text-danger">*</sup></label>
                                 </div>
                             </td>
                         </tr>

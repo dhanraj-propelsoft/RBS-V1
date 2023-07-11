@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('content')
-    <div class="d-flex justify-content-start align-items-sm-start flex-column   main-container">
+    <div class="d-flex justify-content-start align-items-sm-start flex-column  ">
 
         <section class=" card mt-5 p-2 wizard-section col-10 m-auto" style="height:100%;">
             <div class="row no-gutters justify-content-center">
@@ -277,12 +277,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mx-auto mb-4">
-                                    <div class="form-outline">
-                                        <input type="number" id="balance" name="balance" class="form-control" />
-                                        <label class="form-label" for="balance">Net Balance </label>
-                                    </div>
-                                </div>
+                               
                                 <div class="form-group clearfix">
                                     <a href="javascript:;"
                                         class="form-wizard-previous-btn btn btn-secondary float-start">Previous</a>

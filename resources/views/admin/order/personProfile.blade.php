@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
 
-<div class="d-flex justify-content-center align-items-start mt-5 shadow-1  main-container">
+<div class="d-flex justify-content-center align-items-start mt-5  ">
 
   <div class="card col-10" >
     <div class="card-header border-0">
@@ -69,7 +69,7 @@
 
 
 
-          <div class="col-md-6  mx-auto mb-4">
+          <div class=" float-end mb-4" >
             <div class="d-grid gap-2">
               <button class="btn btn-primary">Continue</button>
             </div>

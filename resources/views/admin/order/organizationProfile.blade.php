@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
 
-<div class="d-flex justify-content-center align-items-sm-start align-items-md-center  main-container">
+<div class="d-flex justify-content-center align-items-sm-start align-items-md-center  ">
 
   <div class="card col-10 " style="height:100%;">
     <div class="card-header border-0">
@@ -12,7 +12,7 @@
 
     </div>
     <div class="card-body">
-      <form name="form" method="post" action="{{url('agentStore')}}">
+      <form action="{{url('agentStore')}}"  method="post" >
         @csrf
         <input type="hidden" name="userType" id="userType" value="{{$userType}}" />
         <input type="hidden" name="link"  value="admin" />
@@ -95,7 +95,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 mx-auto mb-4">
+        <div class="float-end  mb-4">
           <div class="d-grid gap-2 ">
             <button class="btn btn-primary">Continue</button>
           </div>

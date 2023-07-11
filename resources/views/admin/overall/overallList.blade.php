@@ -66,18 +66,13 @@
   @endphp
   
   @for ($i = 1; $i <= 50; $i++)
-      <tr>
+      <tr  data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
           <td>{{ $i }}</td>
           <td class="search-concrete">{{ Str::random(10) }}</td>
           <td>Product {{ $i }}</td>
           <td>{{ rand(1, 10) }}</td>
           <td>{{ $startDate->format('d/m/Y') }}</td>
-                  <td>
-          <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-            <i class="fa fa-eye"></i>
-          </button>
         
-        </td>
 
        
       </tr>
@@ -97,7 +92,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-primary" id="exampleModalLabel">Customer | <i class="fa fa-phone"></i> <a href="tel:7098432343">7098432343</a></h5>
-        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close outside-modal shadow" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -164,26 +159,11 @@
           <h5 class="col-md-6">Status:</h5>
           <p class="col-md-6" data-from="status"></p>
         </div>
-        <div class="row">
-          <h5 class="col-md-6">Actions:</h5>
-          <p class="col-md-6" data-from="actions">
-           
-            <button class="btn btn-success btn-sm" onclick="editRow(this)">
-              <i class="fa fa-pencil"></i>
-            </button>
-            <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-              <i class="fa fa-trash"></i>
-            </button>
-          </p>
-        </div>
+      
         
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-      </div>
-    </div>
+      
   </div>
 </div>
     <script>

@@ -11,12 +11,12 @@
                         <div class="form-outline mb-3 ">
                             <input type="text" class="form-control" name="productName" value="{{$product['product_name']}}" id="productName"
                                 placeholder="Product Name">
-                            <label class="form-label" for="productName">Product Name</label>
+                            <label class="form-label" for="productName">Product Name <sup class="text-danger">*</sup></label>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-outline mb-3 ">
-                            <input type="number" class="form-control" value="{{$product['units']}}" name="units" id="units" placeholder="Units">
+                            <input type="text" value="m³" class="form-control" value="{{$product['units']}}" name="units" id="units" placeholder="Units">
                             <label class="form-label" for="units">Units</label>
                         </div>
                     </div>
@@ -32,12 +32,7 @@
                         </div>
 
                     </div>
-                    <div class="col-6">
-                        <div class="form-outline mb-3">
-                            <input type="number" class="form-control" value="{{$product['rate']}}" name="rate" id="rate" placeholder="Rate">
-                            <label class="form-label" for="rate">Rate / m<sup>3</sup></label>
-                        </div>
-                    </div>
+                  
                 </div>
 
 
@@ -56,7 +51,7 @@
                                 <div class="form-outline">
                                     <input type="date" class="form-control" value="{{$value['eff_date']}}" name="effectiveDate[]" id="effectiveDate"
                                         placeholder="Effective Date">
-                                    <label class="form-label"for="effectiveDate">Effective Date</label>
+                                    <label class="form-label"for="effectiveDate">Effective Date </label>
                                 </div>
                             </td>
                             <td>

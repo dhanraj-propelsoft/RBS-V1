@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
 
-<form class="d-flex justify-content-between" onsubmit="return false">
+<form class="d-flex justify-content-between form-for-filter" onsubmit="return false">
   <div class="dataTables_length " id="orderTable_length">
     <label>
       <select name="orderTable_length" id="setLengthButton" aria-controls="orderTable" class="form-control select2" style="width:100px;">
@@ -34,22 +34,22 @@
   </div>
   <div class="searchByColumn">
     <label class="input-group">
-      <select name="" id="" class="form-control select2" style="width:200px">
-        <option selected disabled> Concrete Grade... </option>
+      <select name="" id="" class="form-control select2" data-placeholder="Select Concrete" multiple style="width:200px">
+  
         <option value="1">Grade 3</option>
         <option value="2">Grade 4</option>
       </select>
     </label>
   </div>
   <div class="searchByColumn">
-    <select name="" id="" class="form-control select2" style="width:150px">
-      <option selected disabled> Status... </option>
+    <select name="" id="" class="form-control select2" multiple data-placeholder="Select Status" style="width:150px">
+      
       <option value="1">Pending</option>
       <option value="2">Confirmed</option>
     </select>
   </div>
   <div class="form_submit">
-    <button type="reset" class="btn btn-secondary mx-2"> <i class="fa fa-undo"></i>
+    <button type="reset" class="btn btn-secondary mx-2 reset-form"> <i class="fa fa-undo"></i>
     </button>
     <button type="button" class="btn btn-primary"> Submit </button>
   </div>
@@ -58,34 +58,23 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>Date & Time of Supply</th>
       <th>Customer Name & Phone Number</th>
       <th>Site Address</th>
       <th>Status</th>
       <th>Order By</th>
-      <th>Actions</th>
-
-    </tr>
+     </tr>
   </thead>
   <tbody>
+ 
     @foreach($modelDatas as $modelData)
-    <tr>
+    <tr class="cursor-pointer" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
       <td>{{$loop->iteration}}</td>
+      <td>Need Date Here</td>
       <td class="search-concrete">{{$modelData['customerData']}}</td>
       <td>{{$modelData['siteAddress']}}</td>
-      <td><span class="badge rounded-pill badge-warning">{{$modelData['status']}}</span></td>
+      <td><span class="badge rounded-pill badge-orange">{{$modelData['status']}}</span></td>
       <td>{{$modelData['orderBy']}}</td>
-      <td>
-        <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#view" onclick="viewRow(this)">
-          <i class="fa fa-eye"></i>
-        </button>
-        <button class="btn btn-success btn-sm" onclick="editRow(this)">
-          <i class="fa fa-pencil"></i>
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">
-          <i class="fa fa-trash-o"></i>
-        </button>
-      </td>
-
 
     </tr>
     @endforeach
@@ -100,7 +89,9 @@
         <h5 class="modal-title text-primary" id="exampleModalLabel">Customer | <i class="fa fa-phone"></i> <a href="tel:7098432343">7098432343</a></h5>
         <div class="d-flex">
           <button class="btn btn-success mx-2">Edit</button>
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info text-capitalize me-2">Copy URL</button>
+          <button type="button" class="btn text-white text-capitalize shadow  me-2" style="background-color: #ac2bac;">Send SMS</button>
+          <button type="button" class="btn-close outside-modal shadow"  data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
 
       </div>
@@ -138,7 +129,7 @@
           <p class="col-md-6" data-from="service"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">T otal Amount:</h5>
+          <h5 class="col-md-6">Total Amount:</h5>
           <p class="col-md-6" data-from="service"></p>
         </div>
 
@@ -170,28 +161,15 @@
           <p class="col-md-6" data-from="remark"></p>
         </div>
         <div class="row">
-          <h5 class="col-md-6">Status:</h5>
+          <h5 class="col-md-6">Current Status:</h5>
           <p class="col-md-6" data-from="status"></p>
         </div>
-
-
-
       </div>
       <div class="modal-footer">
-        <div class="dropdown">
-          <button class="btn btn-warning text-capitalize dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-            Pending
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Pending</a></li>
-            <li><a class="dropdown-item" href="#">Cancel Order</a></li>
-            <li><a class="dropdown-item" href="#">Order Delivered</a></li>
-            <li><a class="dropdown-item" href="#">Confirm Order</a></li>
-          </ul>
-        </div>
-        <button type="button" class="btn btn-info text-capitalize">Copy URL</button>
-        <button type="button" class="btn text-white text-capitalize" style="background-color: #ac2bac;">Send SMS</button>
-
+        <button type="button" class="btn btn-danger text-capitalize">Cancel Order</button>
+        <button type="button" class="btn btn-success text-capitalize"> Order Delivered</button>
+        <button type="button" class="btn text-white  text-capitalize" style="background-color: rgb(236, 74, 137);"> Confirm Party Order Over Phone</button>
+        <button type="button" class="btn btn-orange text-capitalize"> Confirm Order</button>
       </div>
     </div>
   </div>
@@ -224,5 +202,11 @@
   });
 
   $(".navbar .container-fluid").append("<a href='{{ route('order.addNewOrder') }}' class='btn btn-primary btn-sm'>Add Order</a>");
+
+  $(".reset-form").click(function() {
+   
+    $(".form-for-filter .select2[multiple]").val("").trigger("change");
+});
+
 </script>
 @endsection
