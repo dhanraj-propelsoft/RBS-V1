@@ -44,8 +44,8 @@
 
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="plotNUmber" name="plotNUmber" class="form-control" />
-              <label class="form-label" for="plotNUmber">Block/Plot Number </label>
+              <input type="text" id="addressLine1" name="addressLine1" class="form-control" required/>
+              <label class="form-label" for="addressLine1">Address Line 1 <sup class="text-danger">*</sup> </label>
             </div>
           </div>
         </div>
@@ -54,14 +54,14 @@
 
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="street" name="street" class="form-control" />
-              <label class="form-label" for="street">Street</label>
+              <input type="text" id="addressLine2" name="addressLine2" class="form-control" required />
+              <label class="form-label" for="addressLine2">Address Line 2 <sup class="text-danger">*</sup> </label>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="city" name="city" class="form-control" />
-              <label class="form-label" for="city">City </label>
+              <input type="text" id="city" name="city" class="form-control" required/>
+              <label class="form-label" for="city">City <sup class="text-danger">*</sup>   </label>
             </div>
           </div>
         </div>

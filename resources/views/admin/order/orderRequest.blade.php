@@ -34,7 +34,7 @@
   </div>
   <div class="searchByColumn">
     <label class="input-group">
-      <select name="" id="" class="form-control select2" data-placeholder="Select Concrete" multiple style="width:200px">
+      <select name="" id="" class="form-control select2" data-placeholder="Search by Concrete Grade" multiple style="width:200px">
   
         <option value="1">Grade 3</option>
         <option value="2">Grade 4</option>
@@ -42,7 +42,7 @@
     </label>
   </div>
   <div class="searchByColumn">
-    <select name="" id="" class="form-control select2" multiple data-placeholder="Select Status" style="width:150px">
+    <select name="" id="" class="form-control select2" multiple data-placeholder="Search by Status" style="width:150px">
       
       <option value="1">Pending</option>
       <option value="2">Confirmed</option>

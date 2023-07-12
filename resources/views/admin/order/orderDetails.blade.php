@@ -28,15 +28,15 @@
                                         <div class="form-outline">
                                             <input type="text" id="siteName" class="form-control" name="siteName"
                                                 siteAddress />
-                                            <label class="form-label" for="siteName">Site Name</label>
+                                            <label class="form-label" for="siteName">Site Name</label>      
                                         </div>
                                         <input type="hidden" name="personId" value="{{ $personId }}">
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="siteNumber" class="form-control" name="siteNumber"
+                                            <input type="text" id="addressLine1" class="form-control" name="addressLine1"
                                                 required siteAddress />
-                                            <label class="form-label" for="siteNumber">Site / Plot Number<sup
+                                            <label class="form-label" for="addressLine1">Address Line 1<sup
                                                     class="text-red">*</sup></label>
                                         </div>
                                     </div>
@@ -45,9 +45,9 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="street" class="form-control" name="street"
+                                            <input type="text" id="addressLine2" class="form-control" name="addressLine2"
                                                 required siteAddress />
-                                            <label class="form-label" for="street">Street<sup
+                                            <label class="form-label" for="addressLine2">Address Line 2<sup
                                                     class="text-red">*</sup></label>
                                         </div>
                                     </div>
@@ -235,9 +235,9 @@
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="blockPlotNumber" name="blockPlotNumber"
+                                            <input type="text" id="baddressLine1" name="baddressLine1"
                                                 class="form-control" required billAddress />
-                                            <label class="form-label" for="blockPlotNumber">Block / Plot Number <sup
+                                            <label class="form-label" for="baddressLine1">Address Line 1 <sup
                                                     class="text-red">*</sup></label>
                                         </div>
                                     </div>
@@ -246,9 +246,9 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="streetCityState" name="streetCityState"
+                                            <input type="text" id="baddressLine2" name="baddressLine2"
                                                 class="form-control" required billAddress />
-                                            <label class="form-label" for="streetCityState">Street, City, State <sup
+                                            <label class="form-label" for="baddressLine2">Address Line 2<sup
                                                     class="text-red">*</sup></label>
                                         </div>
                                     </div>

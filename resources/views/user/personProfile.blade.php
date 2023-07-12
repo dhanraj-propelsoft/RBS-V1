@@ -44,8 +44,8 @@
 
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="plotNUmber" name="plotNUmber" class="form-control" />
-              <label class="form-label" for="plotNUmber">Block/Plot Number </label>
+              <input type="text" id="addressLine1" name="addressLine1" class="form-control" />
+              <label class="form-label" for="addressLine1">Address Line 1 </label>
             </div>
           </div>
         </div>
@@ -54,8 +54,8 @@
 
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="street" name="street" class="form-control" />
-              <label class="form-label" for="street">Street</label>
+              <input type="text" id="addressLine2" name="addressLine2" class="form-control" />
+              <label class="form-label" for="addressLine2">Address Line 1</label>
             </div>
           </div>
           <div class="col-md-6 mb-4">
@@ -65,22 +65,11 @@
             </div>
           </div>
         </div>
-
-
-
-
           <div class="col-md-6  mx-auto mb-4">
             <div class="d-grid gap-2">
               <button class="btn btn-primary">Continue</button>
             </div>
           </div>
-
-
-
-
-
-
-
       </form>
 
     </div>

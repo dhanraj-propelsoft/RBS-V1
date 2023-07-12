@@ -30,8 +30,8 @@
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="siteNumber" class="form-control" name="siteNumber" required siteAddress />
-										<label class="form-label" for="siteNumber">Site / Plot Number<sup class="text-red">*</sup></label>
+										<input type="text" id="addressLine1" class="form-control" name="addressLine1" required siteAddress />
+										<label class="form-label" for="addressLine1">Address Line 1<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 							</div>
@@ -39,8 +39,8 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="street" class="form-control" name="street" required siteAddress />
-										<label class="form-label" for="street">Street<sup class="text-red">*</sup></label>
+										<input type="text" id="addressLine2" class="form-control" name="addressLine2" required siteAddress />
+										<label class="form-label" for="addressLine2">Address Line 2<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">
@@ -129,7 +129,7 @@
 								</div>
 
 								<div class="col-md-6 mb-4">
-									<select class="form-select" id="conGrade" name="conGrade" required aria-label="Select option">
+									<select class="form-select " id="conGrade" name="conGrade" required aria-label="Select option">
 										<option selected disabled>Congrate Grade</option>
 										<option value="opt">Option 1</option>
 										<option value="option2">Option 2</option>
@@ -195,8 +195,8 @@
 								</div>
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control" required billAddress />
-										<label class="form-label" for="blockPlotNumber">Block / Plot Number <sup class="text-red">*</sup></label>
+										<input type="text" id="bAddressLine1" name="bAddressLine1" class="form-control" required billAddress />
+										<label class="form-label" for="bAddressLine1">Address Line 1<sup class="text-red">*</sup></label>
 									</div>
 								</div>
 							</div>
@@ -204,8 +204,8 @@
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<div class="form-outline">
-										<input type="text" id="street" name="street" class="form-control" required billAddress />
-										<label class="form-label" for="street">Street <sup class="text-red">*</sup></label>
+										<input type="text" id="bAddressLine2" name="bAddressLine2" class="form-control" required billAddress />
+										<label class="form-label" for="bAddressLine2">Address Line 2 <sup class="text-red">*</sup></label>
 									</div>
 								</div>
 								<div class="col-md-6 mb-4">

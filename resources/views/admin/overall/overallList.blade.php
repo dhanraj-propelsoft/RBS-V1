@@ -36,12 +36,13 @@
     </div>
     <input type="hidden" id="dtp_input2" value="" />
   </div>
-  <div class="searchByColumn" >
+  <div class="searchByColumn">
     <label class="input-group">
-      <input type="text" class="form-control" id="searchByColumn" placeholder="Search by Concrete Grade">
-      <span class="input-group-addon btn btn-floating shadow-0 border border-1 border-start-0 h-auto rounded-end border-secondary">
-        <span class="fa fa-search"></span>
-      </span>
+      <select name="" id="" class="form-control select2" data-placeholder="Search by Concrete Grade" multiple style="width:200px">
+  
+        <option value="1">Grade 3</option>
+        <option value="2">Grade 4</option>
+      </select>
     </label>
   </div>
 </div>

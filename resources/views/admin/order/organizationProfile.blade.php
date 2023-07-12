@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="organizationName" name="organizationName" class="form-control" />
+              <input type="text" id="organizationName" name="organizationName" class="form-control" required/>
               <label class="form-label" for="organizationName">Organization/Builder/Agent Name<sup class="text-red">*</sup> </label>
             </div>
           </div>
@@ -41,8 +41,8 @@
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="blockPlotNumber" name="blockPlotNumber" class="form-control"  />
-              <label class="form-label" for="blockPlotNumber">Block/Plot Number<sup class="text-red">*</sup></label>
+              <input type="text" id="addressLine1" name="addressLine1" class="form-control" required />
+              <label class="form-label" for="addressLine1">Address Line 1<sup class="text-red">*</sup></label>
             </div>
           </div>
         </div>
@@ -50,14 +50,14 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="form-outline">
-              <input type="text" id="street" name="street" class="form-control" />
-              <label class="form-label" for="street">Street<sup class="text-red">*</sup> </label>
+              <input type="text" id="addressLine2" name="addressLine2" class="form-control" required/>
+              <label class="form-label" for="addressLine2">Address Line 2<sup class="text-red">*</sup> </label>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="form-outline">
               <input type="text" id="city" name="city" class="form-control" />
-              <label class="form-label" for="city">City<sup class="text-red">*</sup> </label>
+              <label class="form-label" for="city">City </label>
             </div>
           </div>
 
